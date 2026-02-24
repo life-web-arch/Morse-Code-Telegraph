@@ -1,0 +1,318 @@
+
+<!-- version : 4:18 PM 24/2/26 -->
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Morse Code - Detailed Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,400;0,700;1,400;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            var(--bg): #f3ebdb;
+            --bg: #f3ebdb;
+            --container-bg: #faf6f0;
+            --text: #3c2a21;
+            --subtitle: #6d594b;
+            --border: #d4c5b0;
+            --primary: #8b5a2b;
+            --accent: #b54924;
+            --header-font: 'Playfair Display', serif;
+            --body-font: 'Comic Neue', cursive, sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --bg: #1a1816;
+            --container-bg: #282522;
+            --text: #e0d4c3;
+            --subtitle: #a39b8e;
+            --border: #443e38;
+            --primary: #cda434;
+            --accent: #d86438;
+        }
+
+        * { box-sizing: border-box; transition: background-color 0.3s, color 0.3s, border-color 0.3s; -webkit-tap-highlight-color: transparent; }
+        body { 
+            background-color: var(--bg); color: var(--text); margin: 0; padding: 20px; 
+            display: flex; flex-direction: column; align-items: center; 
+            font-family: var(--body-font); line-height: 1.6;
+        }
+        
+        h1, h2, h3 { font-family: var(--header-font); text-align: center; margin: 0; color: var(--primary); }
+        h1 { font-size: 2.5rem; margin-bottom: 5px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+        h2 { font-size: 1.8rem; margin-top: 30px; margin-bottom: 15px; text-align: left; border-bottom: 2px solid var(--border); padding-bottom: 8px;}
+        p.subtitle { text-align: center; color: var(--subtitle); max-width: 650px; margin-bottom: 25px; font-size: 1.1rem; }
+
+        /* Top Bar */
+        .top-bar { width: 100%; max-width: 1100px; display: flex; justify-content: space-between; margin-bottom: 20px; align-items: center;}
+        .theme-toggle, .btn-back { 
+            background: var(--container-bg); border: 2px solid var(--border); border-radius: 50px; 
+            cursor: pointer; color: var(--primary); font-family: var(--header-font); 
+            font-weight: bold; text-decoration: none; display: inline-block;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.1s;
+        }
+        .theme-toggle { padding: 5px 15px; font-size: 1rem; }
+        .btn-back { padding: 5px 12px; font-size: 0.9rem; }
+        .theme-toggle:hover, .btn-back:hover { border-color: var(--primary); transform: translateY(-2px); }
+
+        /* Container */
+        .container {
+            width: 100%; max-width: 1100px; background: var(--container-bg); padding: 40px; 
+            border-radius: 12px; box-shadow: 0 12px 25px rgba(0,0,0,0.15); border: 1px solid var(--border);
+            margin-bottom: 30px; font-size: 1.05rem;
+        }
+
+        .highlight-box {
+            background: var(--bg); border-left: 5px solid var(--accent); padding: 20px;
+            margin: 20px 0; border-radius: 0 8px 8px 0; box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .highlight-box ul { margin: 0; padding-left: 20px; }
+        .highlight-box li { margin-bottom: 10px; }
+        .highlight-box strong { color: var(--primary); }
+
+        .example-box {
+            background: rgba(0,0,0,0.05); border: 1px dashed var(--primary);
+            padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center;
+        }
+        [data-theme="dark"] .example-box { background: rgba(255,255,255,0.03); }
+        .example-morse { font-size: 2rem; font-weight: bold; letter-spacing: 4px; color: var(--accent); margin: 10px 0; }
+        .example-text { font-family: var(--header-font); font-size: 1.3rem; color: var(--text); }
+        
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th, td { padding: 12px; border: 1px solid var(--border); text-align: left; }
+        th { background: var(--bg); color: var(--primary); font-family: var(--header-font); font-size: 1.2rem;}
+
+        .table-responsive { width: 100%; overflow-x: auto; margin-top: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid var(--border); }
+        .table-responsive table { margin-top: 0; border: none; }
+        .table-responsive th, .table-responsive td { border-top: none; border-bottom: 1px solid var(--border); }
+        .table-responsive th:first-child, .table-responsive td:first-child { border-left: none; }
+        .table-responsive th:last-child, .table-responsive td:last-child { border-right: none; }
+
+        /* Footer */
+        .site-footer { text-align: center; font-family: var(--body-font); font-size: 0.9rem; color: var(--subtitle); margin-top: 10px; margin-bottom: 20px; }
+        .site-footer .heart { color: #e74c3c; }
+
+        .scroll-hint-container {
+            display: none;
+            justify-content: flex-end;
+            margin-bottom: 5px;
+            width: 100%;
+        }
+        .scroll-hint {
+            font-size: 0.85rem; 
+            color: #ffffff;
+            background-color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            animation: scrollPulse 2s infinite; 
+            font-family: var(--body-font);
+            letter-spacing: 0.5px;
+        }
+        @keyframes scrollPulse { 
+            0% { opacity: 0.75; transform: translateX(0); } 
+            50% { opacity: 1; transform: translateX(-6px); } 
+            100% { opacity: 0.75; transform: translateX(0); } 
+        }
+
+        /* Progress Bar Track & Fill */
+        .scroll-progress-container {
+            display: none;
+            width: 100%;
+            height: 4px;
+            background-color: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .scroll-progress-bar {
+            height: 100%;
+            width: 15%; /* Initial small progress to show intent */
+            background-color: var(--accent);
+            border-radius: 4px;
+            transition: width 0.05s ease-out; /* Super snappy live update */
+        }
+        
+        /* Show hints and progress bars on mobile/tablet screens that need scrolling */
+        @media (max-width: 768px) {
+            .scroll-hint-container { display: flex; }
+            .scroll-progress-container { display: block; }
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <a href="index.html" class="btn-back">⬅ Back to Simulator</a>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">☀️ Light Mode</button>
+    </div>
+
+    <h1>Understanding Morse Code</h1>
+    <p class="subtitle">A comprehensive guide to the language of sound, time, dots, and dashes.</p>
+
+    <div class="container">
+        
+        <p>Morse code is an ingenious method of transmitting text information as a series of on-off tones, lights, or clicks. Invented in the 1830s by Samuel Morse and Alfred Vail, it revolutionized long-distance communication.</p>
+
+        <h2>1. The Basic Elements</h2>
+        <p>Morse code relies on two fundamental signal durations. The entire language is built upon the relationship between these two sounds.</p>
+        <div class="highlight-box">
+            <ul>
+                <li><strong>The Dot ( . )</strong>: Also called a <em>dit</em> or <em>dih</em>. It is the fundamental unit of time measurement in Morse code.</li>
+                <li><strong>The Dash ( - )</strong>: Also called a <em>dah</em>. A dash is exactly <strong>three times as long</strong> as a dot.</li>
+            </ul>
+        </div>
+
+        <h2>2. The Rules of Timing & Spacing</h2>
+        <p>The magic of Morse code lies in the silence between the sounds. Proper spacing is crucial to distinguish between letters and words. The International Telecommunication Union (ITU) defines the official timing standard as follows:</p>
+        
+        <div class="scroll-hint-container">
+            <div class="scroll-hint"><span>👉</span> Swipe table to view more</div>
+        </div>
+        
+        <!-- Top Progress Bar -->
+        <div class="scroll-progress-container">
+            <div class="scroll-progress-bar" id="topScrollProgress"></div>
+        </div>
+
+        <div class="table-responsive" id="scrollableTable">
+            <table>
+                <tr>
+                    <th>Element</th>
+                    <th>Duration (in units)</th>
+                    <th>Explanation</th>
+                </tr>
+                <tr>
+                    <td><strong>Dot</strong></td>
+                    <td>1 Unit</td>
+                    <td>The base length. (e.g., 100 milliseconds)</td>
+                </tr>
+                <tr>
+                    <td><strong>Dash</strong></td>
+                    <td>3 Units</td>
+                    <td>Held three times as long as a dot. (e.g., 300 ms)</td>
+                </tr>
+                <tr>
+                    <td><strong>Intra-character Gap</strong></td>
+                    <td>1 Unit</td>
+                    <td>The silence between dots and dashes <em>within</em> a single letter.</td>
+                </tr>
+                <tr>
+                    <td><strong>Short Gap (Letters)</strong></td>
+                    <td>3 Units</td>
+                    <td>The silence between separate letters of a word.</td>
+                </tr>
+                <tr>
+                    <td><strong>Medium Gap (Words)</strong></td>
+                    <td>7 Units</td>
+                    <td>The silence between completely separate words.</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Bottom Progress Bar -->
+        <div class="scroll-progress-container">
+            <div class="scroll-progress-bar" id="bottomScrollProgress"></div>
+        </div>
+
+        <h2>3. Practical Examples</h2>
+        <p>Let's look at how the timing rules come together to form recognizable words.</p>
+
+        <div class="example-box">
+            <div class="example-text">The universal distress signal: <strong>S O S</strong></div>
+            <div class="example-morse">... --- ...</div>
+            <p style="margin:0; font-size: 0.95rem;">Three short dots (S), three long dashes (O), three short dots (S). Continuous, with no word gaps in between.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="example-text">The word: <strong>HELLO</strong></div>
+            <div class="example-morse">.... . .-.. .-.. ---</div>
+            <p style="margin:0; font-size: 0.95rem;">Notice the spaces between the sequences. Without a 3-unit space between letters, it would just become a giant unrecognizable string of sounds.</p>
+        </div>
+
+        <h2>4. Pro Tips for Learning</h2>
+        <div class="highlight-box">
+            <ul>
+                <li><strong>Learn by Sound, Not Sight:</strong> Don't try to memorize "." and "-". Instead, learn the rhythmic melody. Think of "C" not as <em>dash-dot-dash-dot</em>, but as the rhythm <em>"Dah-di-Dah-dit"</em>.</li>
+                <li><strong>Start Slow, But Keep Relative Timing Fast:</strong> When practicing, stretch out the silence between letters so your brain has time to process, but keep the speed of the actual dots and dashes normal. This is known as the <em>Farnsworth Method</em>.</li>
+                <li><strong>Identify the Vowels:</strong> 'E' is a single dot (.), and 'T' is a single dash (-). They are the most common letters in English, making them the fastest to transmit.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="site-footer">
+        Made with <span class="heart">❤</span> by BM
+    </div>
+
+<script>
+    // Exact same theme toggler logic to keep consistency
+    let isDarkMode = true;
+    
+    // Load saved theme preference instantly (prevents flashing)
+    const savedTheme = localStorage.getItem('morseTheme');
+    if (savedTheme === 'light') {
+        isDarkMode = false;
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.getElementById('themeBtn').innerText = '🌙 Dark Mode';
+    }
+
+    function toggleTheme() {
+        isDarkMode = !isDarkMode;
+        document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+        document.getElementById('themeBtn').innerText = isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode';
+        
+        // Save theme preference in localStorage
+        localStorage.setItem('morseTheme', isDarkMode ? 'dark' : 'light');
+    }
+
+    // Scroll Progress Bar Logic
+    document.addEventListener("DOMContentLoaded", () => {
+        const tableContainer = document.getElementById('scrollableTable');
+        const topProgress = document.getElementById('topScrollProgress');
+        const bottomProgress = document.getElementById('bottomScrollProgress');
+
+        function updateProgress() {
+            const maxScrollLeft = tableContainer.scrollWidth - tableContainer.clientWidth;
+            
+            if (maxScrollLeft > 0) {
+                // Start with a 15% minimum width to visually indicate there is more to swipe
+                const baseWidth = 15; 
+                const scrollPercentage = (tableContainer.scrollLeft / maxScrollLeft) * (100 - baseWidth);
+                const finalWidth = baseWidth + scrollPercentage;
+                
+                topProgress.style.width = finalWidth + '%';
+                bottomProgress.style.width = finalWidth + '%';
+            }
+        }
+
+        if (tableContainer && topProgress && bottomProgress) {
+            // Update on scroll
+            tableContainer.addEventListener('scroll', updateProgress);
+            
+            // Update on window resize (in case rotating a mobile device changes max scroll)
+            window.addEventListener('resize', updateProgress);
+            
+            // Run instantly on load to ensure correct starting size
+            setTimeout(updateProgress, 100);
+        }
+    });
+</script>
+
+</body>
+</html>
+
+
+
