@@ -1,6 +1,6 @@
 
 
-<!--version: 24/2/26 4:18 PM -->
+<!--version: 24/2/26 4:41 PM -->
 
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
@@ -362,7 +362,13 @@
                 <button class="chart-play-btn" onclick="playMorseString('${code}', this)" title="Play sound">▶</button>
             `;
 
-            if (/[A-Z]/.test(char)) { lettersGrid.appendChild(div); }
+            if (/[A-Z]/.test(char)) { 
+                lettersGrid.appendChild(div); 
+            } else if (/[0-9]/.test(char)) { 
+                numbersGrid.appendChild(div); 
+            } else { 
+                symbolsGrid.appendChild(div); 
+            }
         }
         
         // Close dropdown when clicking outside
@@ -917,5 +923,6 @@
 
 </body>
 </html>
+
 
 
