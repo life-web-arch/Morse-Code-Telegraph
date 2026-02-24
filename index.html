@@ -1,6 +1,6 @@
 
 
-<!--version: 24/2/26 4:41 PM -->
+<!--version: 25/2/26 5:16 AM -->
 
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
@@ -10,7 +10,7 @@
     <title>Morse Code Telegraph Simulator & Reference</title>
     <!-- Include LameJS via CDN for real client-side MP3 encoding -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -234,6 +234,40 @@
         .site-footer .heart {
             color: #e74c3c;
         }
+        
+        /* Visualizer Modal */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center;
+        }
+        .modal-overlay.show { display: flex; }
+        .visualizer-container {
+            background: var(--container-bg); padding: 40px 30px 30px 30px; border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid var(--border);
+            text-align: center; position: relative; width: 90%; max-width: 500px;
+        }
+        .btn-close-viz {
+            position: absolute; top: -15px; right: -15px; background: #e74c3c; color: white;
+            border: 3px solid var(--container-bg); border-radius: 50px; padding: 8px 18px; cursor: pointer;
+            font-family: var(--body-font); font-weight: bold; transition: opacity 0.2s, transform 0.2s;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+        }
+        .btn-close-viz:hover { opacity: 0.9; transform: scale(1.05); }
+        #visualizerCanvas {
+            width: 100%; height: 150px; background: var(--bg); border: 1px solid var(--border);
+            border-radius: 8px; margin-top: 5px;
+        }
+        .subtitle-text {
+            margin-top: 20px; font-family: 'Comic Neue', cursive; font-size: 1.5rem;
+            color: var(--primary); min-height: 60px; max-height: 120px; overflow-y: auto;
+            letter-spacing: 1.5px; font-weight: bold; white-space: pre-wrap; word-break: break-word;
+            background: var(--bg); padding: 10px; border-radius: 8px; border: 1px solid var(--border);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+        }
+        /* Custom scrollbar for subtitle area */
+        .subtitle-text::-webkit-scrollbar { width: 8px; }
+        .subtitle-text::-webkit-scrollbar-track { background: transparent; }
+        .subtitle-text::-webkit-scrollbar-thumb { background-color: var(--accent); border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -397,6 +431,103 @@
     let liveOscillator = null;
     let liveGain = null;
     const FREQUENCY = 650; // Hz - slightly warmer vintage tone
+    
+    // --- VISUALIZER & SUBTITLE VARIABLES ---
+    let visualizerAnimationFrame = null;
+    let visualizerAnalyser = null;
+    let visualizerStartTime = -1;
+    let currentTimingMap = [];
+    let displayedSubtitle = "";
+
+    function openVisualizer() {
+        document.getElementById('visualizerModal').classList.add('show');
+        document.getElementById('subtitleContainer').innerText = "";
+        displayedSubtitle = "";
+        
+        const canvas = document.getElementById('visualizerCanvas');
+        const canvasCtx = canvas.getContext('2d');
+        canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function stopAndCloseVisualizer() {
+        document.getElementById('visualizerModal').classList.remove('show');
+        if (activeAudioSource) {
+            activeAudioSource.onended = null; // Prevent callback loop
+            try { activeAudioSource.stop(); } catch(e) {}
+            activeAudioSource = null;
+        }
+        if (visualizerAnimationFrame) {
+            cancelAnimationFrame(visualizerAnimationFrame);
+            visualizerAnimationFrame = null;
+        }
+        resetActivePlayBtn();
+    }
+
+    function drawVisualizer() {
+        if (!visualizerAnalyser) return;
+        
+        const canvas = document.getElementById('visualizerCanvas');
+        const canvasCtx = canvas.getContext('2d');
+        const bufferLength = visualizerAnalyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+        
+        visualizerAnalyser.getByteTimeDomainData(dataArray);
+        
+        canvasCtx.fillStyle = isDarkMode ? '#1a1816' : '#f3ebdb';
+        canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        canvasCtx.lineWidth = 2;
+        canvasCtx.strokeStyle = isDarkMode ? '#cda434' : '#8b5a2b';
+        
+        canvasCtx.beginPath();
+        const sliceWidth = canvas.width * 1.0 / bufferLength;
+        let x = 0;
+        
+        // --- WAVEFORM PADDING ADJUSTMENT ---
+        // Change 'waveAmplitude' below to adjust vertical padding. 
+        // 1.0 = full height (touches top & bottom)
+        // 0.6 = 60% height (leaves 20% padding at top and 20% padding at bottom)
+        // 0.4 = 40% height (leaves 30% padding at top and 30% padding at bottom)
+        const waveAmplitude = 0.3; 
+        
+        for (let i = 0; i < bufferLength; i++) {
+            const v = dataArray[i] / 128.0; // v is between 0 and 2 (1 is center)
+            
+            // Apply the amplitude scaling
+            const y = ((v - 1.0) * (canvas.height * waveAmplitude)) + (canvas.height / 2);
+            
+            if (i === 0) canvasCtx.moveTo(x, y);
+            else canvasCtx.lineTo(x, y);
+            
+            x += sliceWidth;
+        }
+        
+        canvasCtx.lineTo(canvas.width, canvas.height / 2);
+        canvasCtx.stroke();
+        
+        // Handle Real-Time English Subtitles
+        if (audioCtx && visualizerStartTime >= 0) {
+            const elapsedTime = audioCtx.currentTime - visualizerStartTime;
+            let newText = "";
+            for (let i = 0; i < currentTimingMap.length; i++) {
+                if (elapsedTime >= currentTimingMap[i].time) {
+                    newText += currentTimingMap[i].char;
+                } else {
+                    break; // Stop loop once we exceed current playback time
+                }
+            }
+            if (newText !== displayedSubtitle) {
+                displayedSubtitle = newText;
+                const subContainer = document.getElementById('subtitleContainer');
+                subContainer.innerText = displayedSubtitle;
+                
+                // Auto-scroll to the bottom as new lines/words are added
+                subContainer.scrollTop = subContainer.scrollHeight;
+            }
+        }
+        
+        visualizerAnimationFrame = requestAnimationFrame(drawVisualizer);
+    }
 
     function initAudio() {
         if (!audioCtx) {
@@ -623,12 +754,15 @@
 
     async function playMorseString(morseStr, btnElement = null) {
         initAudio();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
         if (!morseStr) return;
         
         // Stop currently playing audio immediately if a new one is requested
         if (activeAudioSource) {
+            activeAudioSource.onended = null;
             try { activeAudioSource.stop(); } catch(e) {}
             resetActivePlayBtn();
+            if (visualizerAnimationFrame) cancelAnimationFrame(visualizerAnimationFrame);
         }
         
         // Change icon of the clicked button
@@ -640,12 +774,57 @@
         const buffer = await createAudioBuffer(morseStr, audioCtx);
         activeAudioSource = audioCtx.createBufferSource();
         activeAudioSource.buffer = buffer;
-        activeAudioSource.connect(audioCtx.destination);
+        
+        // Setup analyser for visualizer
+        visualizerAnalyser = audioCtx.createAnalyser();
+        visualizerAnalyser.fftSize = 2048;
+        activeAudioSource.connect(visualizerAnalyser);
+        visualizerAnalyser.connect(audioCtx.destination);
+        
+        // Build timing map for exact real-time subtitles
+        currentTimingMap = [];
+        let t = 0;
+        let currentToken = "";
+        let tokenStartTime = 0;
+        
+        for (let i = 0; i < morseStr.length; i++) {
+            let char = morseStr[i];
+            if (char === '.' || char === '-') {
+                if (currentToken === "") tokenStartTime = t;
+                currentToken += char;
+                t += (char === '.') ? (DOT_TIME * 2) : (DOT_TIME * 4);
+            } else if (char === ' ') {
+                if (currentToken !== "") {
+                    let eng = reverseDict[currentToken] || '';
+                    currentTimingMap.push({ time: tokenStartTime, char: eng });
+                    currentToken = "";
+                }
+                t += DOT_TIME * 2;
+            } else if (char === '/') {
+                if (currentToken !== "") {
+                    let eng = reverseDict[currentToken] || '';
+                    currentTimingMap.push({ time: tokenStartTime, char: eng });
+                    currentToken = "";
+                }
+                currentTimingMap.push({ time: t, char: ' ' }); // Insert visual space
+                t += DOT_TIME * 6;
+            }
+        }
+        // Capture trailing token safely
+        if (currentToken !== "") {
+            let eng = reverseDict[currentToken] || '';
+            currentTimingMap.push({ time: tokenStartTime, char: eng });
+        }
+        
+        openVisualizer();
+        visualizerStartTime = audioCtx.currentTime;
         activeAudioSource.start();
+        drawVisualizer();
         
         activeAudioSource.onended = () => {
             activeAudioSource = null;
             resetActivePlayBtn();
+            stopAndCloseVisualizer(); // Auto close smoothly when completed
         };
     }
 
@@ -895,6 +1074,7 @@
         
         // Kill actively playing audio instantly
         if (activeAudioSource) {
+            activeAudioSource.onended = null;
             try { activeAudioSource.stop(); } catch(e) {}
             activeAudioSource = null;
         }
@@ -902,6 +1082,11 @@
         // Reset any actively highlighted play buttons
         if (typeof resetActivePlayBtn === 'function') {
             resetActivePlayBtn();
+        }
+        
+        // Kill open visualizer too
+        if (typeof stopAndCloseVisualizer === 'function') {
+            stopAndCloseVisualizer();
         }
     }
 
@@ -920,9 +1105,19 @@
         alert('Copied to clipboard!');
     }
 </script>
-
+<!-- Audio Visualizer Modal -->
+    <div id="visualizerModal" class="modal-overlay">
+        <div class="visualizer-container">
+            <button class="btn-close-viz" onclick="stopAndCloseVisualizer()">✖ Stop & Close</button>
+            <h3 style="margin-bottom: 10px;">Playing Morse Audio</h3>
+            <canvas id="visualizerCanvas" width="400" height="150"></canvas>
+            <div id="subtitleContainer" class="subtitle-text"></div>
+        </div>
+    </div>
 </body>
 </html>
+
+
 
 
 
