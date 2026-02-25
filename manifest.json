@@ -1,0 +1,34 @@
+{
+  "name": "Morse Code Telegraph",
+  "short_name": "Morse",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#1a1816",
+  "background_color": "#1a1816",
+  "share_target": {
+    "action": "/_share-audio",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "files":[
+        {
+          "name": "audioFile",
+          "accept":["audio/*", ".mp3", ".wav", ".webm", ".ogg", ".opus", ".m4a"]
+        }
+      ]
+    }
+  },
+  "icons":[
+    {
+      "src": "https://via.placeholder.com/192",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/512",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
