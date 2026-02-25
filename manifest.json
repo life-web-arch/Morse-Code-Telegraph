@@ -11,24 +11,26 @@
     "enctype": "multipart/form-data",
     "params": {
       "title": "title",
-      "files":[
+      "files": [
         {
           "name": "audioFile",
-          "accept":["audio/*", ".mp3", ".wav", ".webm", ".ogg", ".opus", ".m4a"]
+          "accept": ["audio/*", ".mp3", ".wav", ".webm", ".ogg", ".opus", ".m4a"]
         }
       ]
     }
   },
-  "icons":[
+  "icons": [
     {
-      "src": "https://via.placeholder.com/192",
+      "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "https://via.placeholder.com/512",
+      "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
