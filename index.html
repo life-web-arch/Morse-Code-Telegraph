@@ -1,6 +1,5 @@
 
-
-<!--version: 25/2/26 5:16 AM -->
+<!--version: 26/2/26 4:46 AM -->
 
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
@@ -8,6 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Morse Code Telegraph Simulator & Reference</title>
+    <!-- Add Manifest for PWA and OS-level Share Target -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a1816">
+    
     <!-- Include LameJS via CDN for real client-side MP3 encoding -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
@@ -379,8 +382,10 @@
     const reverseDict = {};
     for (const [key, value] of Object.entries(morseDict)) { reverseDict[value] = key; }
 
-    // --- POPULATE EDUCATIONAL CHART ---
-    window.onload = () => {
+
+
+    // --- POPULATE EDUCATIONAL CHART & HANDLE OS SHARED FILES ---
+    window.onload = async () => {
         const lettersGrid = document.getElementById('chart-letters');
         const numbersGrid = document.getElementById('chart-numbers');
         const symbolsGrid = document.getElementById('chart-symbols');
@@ -411,6 +416,38 @@
                 document.getElementById('downloadDropdown').classList.remove('show');
             }
         });
+
+        // --- PWA & WEB SHARE TARGET LOGIC ---
+        if ('serviceWorker' in navigator) {
+            try {
+                await navigator.serviceWorker.register('sw.js');
+            } catch (err) {
+                console.log("Service Worker registration failed:", err);
+            }
+        }
+
+        // Check if the app was opened via an OS Share action
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('shared')) {
+            try {
+                const cache = await caches.open('shared-audio-cache');
+                const response = await cache.match('/shared-file');
+                if (response) {
+                    const blob = await response.blob();
+                    
+                    // Clean up the cache after retrieving the file
+                    await cache.delete('/shared-file');
+                    // Remove '?shared=1' from URL seamlessly without refreshing
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                    
+                    // Trigger the existing decoder function using a mock event object
+                    const dummyEvent = { target: { files: [blob] } };
+                    handleAudioUpload(dummyEvent);
+                }
+            } catch (err) {
+                console.error("Failed to retrieve shared file:", err);
+            }
+        }
     };
 
     // --- DOM ELEMENTS ---
@@ -1064,8 +1101,10 @@
             console.error(e);
         }
         
-        // reset file input
-        event.target.value = '';
+        // reset file input safely (checks if triggered manually or via OS Share)
+        if (event.target.value !== undefined) {
+            event.target.value = '';
+        }
     }
 
     // --- UTILITIES ---
