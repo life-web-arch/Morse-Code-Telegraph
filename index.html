@@ -1,5 +1,6 @@
 
-<!--version: 26/2/26 6:25  AM -->
+
+<!--version: 26/2/26 1:44  PM -->
 
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
@@ -481,6 +482,33 @@
                 console.error("Failed to retrieve shared file:", err);
             }
         }
+        // --- NEW: iOS Shortcuts Hack Workaround ---
+        if (urlParams.has('decode')) {
+            const fileUrl = decodeURIComponent(urlParams.get('decode'));
+            
+            // Clean up the URL instantly so it looks normal to the user
+            window.history.replaceState({}, document.title, window.location.pathname);
+            
+            const engInputBox = document.getElementById('englishInput');
+            engInputBox.value = "Downloading shared audio from iOS... Please wait.";
+            
+            try {
+                // Fetch the file from the temporary link
+                const response = await fetch(fileUrl);
+                if (!response.ok) throw new Error("File link expired or invalid.");
+                
+                const blob = await response.blob();
+                
+                // Trigger your existing decoder with the downloaded file
+                const dummyEvent = { target: { files: [blob] } };
+                handleAudioUpload(dummyEvent);
+                
+            } catch (err) {
+                engInputBox.value = "Failed to fetch shared iOS file.";
+                console.error(err);
+            }
+        }
+        // --- END NEW CODE ---
     };
 
     // --- DOM ELEMENTS ---
