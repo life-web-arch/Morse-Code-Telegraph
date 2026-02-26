@@ -1,5 +1,5 @@
 
-<!--version: 26/2/26 4:46 AM -->
+<!--version: 26/2/26 5:29  AM -->
 
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
@@ -271,6 +271,25 @@
         .subtitle-text::-webkit-scrollbar { width: 8px; }
         .subtitle-text::-webkit-scrollbar-track { background: transparent; }
         .subtitle-text::-webkit-scrollbar-thumb { background-color: var(--accent); border-radius: 10px; }
+        
+        /* --- SUCCESS MESSAGE STYLE --- */
+        .success-banner {
+            background: #27ae60; /* Green success color */
+            color: #ffffff;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            font-family: var(--header-font);
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid #2ecc71;
+        }
+        @keyframes popIn { 
+            from { opacity: 0; transform: scale(0.9) translateY(-10px); } 
+            to { opacity: 1; transform: scale(1) translateY(0); } 
+        }
     </style>
 </head>
 <body>
@@ -1095,6 +1114,37 @@
             extractedMorse = extractedMorse.trim().replace(/\s+/g, ' ');
             morseInput.value = extractedMorse;
             engInput.value = decodeToEnglish(extractedMorse);
+
+            // --- NEW: Auto-scroll and Success Message ---
+            
+            // 1. Identify the container for the English input (the .box div)
+            const englishContainer = engInput.closest('.box');
+
+            // 2. Remove any previous success message to prevent duplicates
+            const oldBanner = document.getElementById('audioSuccessBanner');
+            if (oldBanner) oldBanner.remove();
+
+            // 3. Create the new success message element
+            const banner = document.createElement('div');
+            banner.id = 'audioSuccessBanner';
+            banner.className = 'success-banner';
+            banner.innerHTML = "✅ Audio Successfully Decoded!";
+
+            // 4. Insert it at the very top of the English container (above the Label)
+            englishContainer.insertBefore(banner, englishContainer.firstChild);
+
+            // 5. Smoothly scroll the page to this container
+            englishContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // 6. Optional: Automatically remove the message after 5 seconds
+            setTimeout(() => {
+                if (banner.parentNode) {
+                    banner.style.opacity = '0';
+                    banner.style.transition = 'opacity 0.5s';
+                    setTimeout(() => banner.remove(), 500);
+                }
+            }, 5000);
+            // --- END NEW CODE ---
 
         } catch (e) {
             engInput.value = "Failed to decode. Ensure the file contains clear Morse code beeps.";
