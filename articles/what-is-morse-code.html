@@ -79,6 +79,11 @@
         .site-footer{text-align:center;font-family:var(--body-font);font-size:0.9rem;color:var(--subtitle);margin-top:10px;margin-bottom:20px}
         .site-footer .heart{color:#e74c3c}
         @media(max-width:600px){article{padding:20px}h1{font-size:1.9rem}}
+            figure{margin:28px 0;text-align:center;width:100%}
+        figure img{display:block;width:100%;max-width:700px;max-height:500px;height:auto;object-fit:cover;object-position:center top;border-radius:8px;border:1px solid var(--border);box-shadow:0 6px 20px rgba(0,0,0,0.12);margin:0 auto;box-sizing:border-box}
+        figure.portrait img{max-width:360px;max-height:460px;object-position:center center}
+        figure.wide img{max-width:100%;max-height:none;object-fit:contain}
+        figcaption{font-size:0.78rem;color:var(--subtitle);margin-top:8px;font-style:italic;max-width:700px;margin-left:auto;margin-right:auto;line-height:1.4}
     </style>
 </head>
 <body>
@@ -90,7 +95,7 @@
     <p class="subtitle">A clear, complete guide for absolute beginners — from the first beep to the last dash.</p>
     <article>
         <h2>Definition</h2>
-        <figure>
+        <figure class="portrait">
             <img src="/images/samuel-morse-portrait.jpg"
                  alt="Samuel F.B. Morse, inventor of Morse code, painted portrait circa 1840"
                  loading="lazy">

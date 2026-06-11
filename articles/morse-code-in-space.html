@@ -70,25 +70,11 @@
         /* Morse visual */
         .morse{font-size:1.7rem;font-weight:bold;letter-spacing:5px;color:var(--accent);text-align:center;margin:14px 0;font-family:'Courier Prime',monospace;word-break:break-all}
         /* Image with caption */
-        figure{margin:28px 0;text-align:center}
-        figure img{width:100%;max-width:700px;border-radius:8px;border:1px solid var(--border);box-shadow:0 6px 20px rgba(0,0,0,0.12)}
-        figcaption{font-size:0.8rem;color:var(--subtitle);margin-top:8px;font-style:italic}
-        /* Two-column image grid */
-        .img-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
-        .img-grid figure{margin:0}
-        @media(max-width:600px){.img-grid{grid-template-columns:1fr}}
-        /* Fact card strip */
-        .fact-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:24px 0}
-        .fact-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
-        .fact-card .num{font-family:var(--header-font);font-size:1.9rem;color:var(--primary);display:block;line-height:1}
-        .fact-card .lbl{font-size:0.8rem;color:var(--subtitle);margin-top:4px;display:block}
-        /* Table */
-        table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.95rem}
-        th,td{padding:10px 12px;border:1px solid var(--border);text-align:left}
-        th{background:var(--bg);color:var(--primary);font-family:var(--header-font)}
-        tr:nth-child(even) td{background:rgba(0,0,0,0.02)}
-        [data-theme="dark"] tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
-        /* CTA */
+                figure{margin:28px 0;text-align:center;width:100%}
+        figure img{display:block;width:100%;max-width:700px;max-height:500px;height:auto;object-fit:cover;object-position:center top;border-radius:8px;border:1px solid var(--border);box-shadow:0 6px 20px rgba(0,0,0,0.12);margin:0 auto;box-sizing:border-box}
+        figure.portrait img{max-width:360px;max-height:460px;object-position:center center}
+        figure.wide img{max-width:100%;max-height:none;object-fit:contain}
+        figcaption{font-size:0.78rem;color:var(--subtitle);margin-top:8px;font-style:italic;max-width:700px;margin-left:auto;margin-right:auto;line-height:1.4}
         .cta-box{background:linear-gradient(135deg,rgba(139,90,43,0.1),rgba(181,73,36,0.07));border:1px solid var(--primary);border-radius:10px;padding:24px;text-align:center;margin-top:36px}
         [data-theme="dark"] .cta-box{background:linear-gradient(135deg,rgba(205,164,52,0.08),rgba(216,100,56,0.1))}
         .cta-box h3{color:var(--accent);margin-bottom:8px}
