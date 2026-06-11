@@ -84,6 +84,24 @@
         figure.portrait img{max-width:360px;max-height:460px;object-position:center center}
         figure.wide img{max-width:100%;max-height:none;object-fit:contain}
         figcaption{font-size:0.78rem;color:var(--subtitle);margin-top:8px;font-style:italic;max-width:700px;margin-left:auto;margin-right:auto;line-height:1.4}
+            /* Two-column image grid */
+        .img-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+        .img-grid figure{margin:0}
+        @media(max-width:600px){.img-grid{grid-template-columns:1fr}}
+        /* Fact card strip */
+        .fact-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:24px 0}
+        .fact-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+        .fact-card .num{font-family:var(--header-font);font-size:1.9rem;color:var(--primary);display:block;line-height:1}
+        .fact-card .lbl{font-size:0.8rem;color:var(--subtitle);margin-top:4px;display:block}
+        /* Pull quote */
+        blockquote{border-left:5px solid var(--primary);margin:28px 0;padding:16px 22px;background:var(--bg);border-radius:0 8px 8px 0;font-family:var(--header-font);font-size:1.15rem;font-style:italic;color:var(--primary);line-height:1.5}
+        blockquote cite{display:block;font-style:normal;font-size:0.82rem;color:var(--subtitle);margin-top:8px;font-family:var(--body-font)}
+        /* Tags + meta */
+        .tag{display:inline-block;background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:0.78rem;color:var(--subtitle);margin:2px}
+        .meta{color:var(--subtitle);font-size:0.85rem;text-align:center;margin-bottom:22px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+        /* Table striping */
+        tr:nth-child(even) td{background:rgba(0,0,0,0.02)}
+        [data-theme="dark"] tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
     </style>
 </head>
 <body>
