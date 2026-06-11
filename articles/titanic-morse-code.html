@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Titanic and Morse Code: The Night That Changed Radio Forever</title>
+    <meta name="description" content="How two wireless operators changed maritime law forever — the true story of SOS, the Titanic's radio room, and the ships that heard the distress call and the ones that didn't.">
+    <link rel="canonical" href="https://morse-code-telegraph.vercel.app/articles/titanic-morse-code">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,400;0,700;1,400;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root{--bg:#f3ebdb;--container-bg:#faf6f0;--text:#3c2a21;--subtitle:#6d594b;--border:#d4c5b0;--primary:#8b5a2b;--accent:#b54924;--header-font:'Playfair Display',serif;--body-font:'Comic Neue',sans-serif}
+        [data-theme="dark"]{--bg:#1a1816;--container-bg:#282522;--text:#e0d4c3;--subtitle:#a39b8e;--border:#443e38;--primary:#cda434;--accent:#d86438}
+        *{box-sizing:border-box;transition:background-color 0.3s,color 0.3s,border-color 0.3s;-webkit-tap-highlight-color:transparent}
+        body{background-color:var(--bg);color:var(--text);margin:0;padding:20px;display:flex;flex-direction:column;align-items:center;font-family:var(--body-font);line-height:1.85}
+        h1,h2,h3{font-family:var(--header-font);color:var(--primary);margin:0}
+        h1{font-size:2.3rem;margin-bottom:8px;text-align:center;line-height:1.2}
+        h2{font-size:1.55rem;margin-top:36px;margin-bottom:12px;border-bottom:2px solid var(--border);padding-bottom:8px}
+        h3{font-size:1.15rem;margin-top:22px;margin-bottom:8px;color:var(--accent)}
+        p{margin:0 0 16px 0}
+        p.subtitle{text-align:center;color:var(--subtitle);max-width:700px;margin-bottom:25px;font-size:1.05rem}
+        .top-bar{width:100%;max-width:960px;display:flex;justify-content:space-between;margin-bottom:20px;align-items:center}
+        .theme-toggle,.btn-back{background:var(--container-bg);border:2px solid var(--border);border-radius:50px;cursor:pointer;color:var(--primary);font-family:var(--header-font);font-weight:bold;text-decoration:none;display:inline-block;box-shadow:0 2px 5px rgba(0,0,0,0.1);transition:transform 0.1s}
+        .theme-toggle{padding:5px 15px;font-size:1rem}
+        .btn-back{padding:5px 12px;font-size:0.9rem}
+        .theme-toggle:hover,.btn-back:hover{border-color:var(--primary);transform:translateY(-2px)}
+        article{width:100%;max-width:860px;background:var(--container-bg);padding:40px;border-radius:12px;box-shadow:0 12px 25px rgba(0,0,0,0.15);border:1px solid var(--border);margin-bottom:30px;font-size:1.05rem}
+        /* Pull quote */
+        blockquote{border-left:5px solid var(--primary);margin:28px 0;padding:16px 22px;background:var(--bg);border-radius:0 8px 8px 0;font-family:var(--header-font);font-size:1.15rem;font-style:italic;color:var(--primary);line-height:1.5}
+        blockquote cite{display:block;font-style:normal;font-size:0.82rem;color:var(--subtitle);margin-top:8px;font-family:var(--body-font)}
+        /* Highlight box */
+        .hl{background:var(--bg);border-left:5px solid var(--accent);padding:16px 20px;margin:22px 0;border-radius:0 8px 8px 0}
+        .hl strong{color:var(--primary)}
+        /* Morse visual */
+        .morse{font-size:1.7rem;font-weight:bold;letter-spacing:5px;color:var(--accent);text-align:center;margin:14px 0;font-family:'Courier Prime',monospace;word-break:break-all}
+        /* Image with caption */
+        figure{margin:28px 0;text-align:center}
+        figure img{width:100%;max-width:700px;border-radius:8px;border:1px solid var(--border);box-shadow:0 6px 20px rgba(0,0,0,0.12)}
+        figcaption{font-size:0.8rem;color:var(--subtitle);margin-top:8px;font-style:italic}
+        /* Two-column image grid */
+        .img-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+        .img-grid figure{margin:0}
+        @media(max-width:600px){.img-grid{grid-template-columns:1fr}}
+        /* Fact card strip */
+        .fact-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:24px 0}
+        .fact-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+        .fact-card .num{font-family:var(--header-font);font-size:1.9rem;color:var(--primary);display:block;line-height:1}
+        .fact-card .lbl{font-size:0.8rem;color:var(--subtitle);margin-top:4px;display:block}
+        /* Table */
+        table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.95rem}
+        th,td{padding:10px 12px;border:1px solid var(--border);text-align:left}
+        th{background:var(--bg);color:var(--primary);font-family:var(--header-font)}
+        tr:nth-child(even) td{background:rgba(0,0,0,0.02)}
+        [data-theme="dark"] tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
+        /* CTA */
+        .cta-box{background:linear-gradient(135deg,rgba(139,90,43,0.1),rgba(181,73,36,0.07));border:1px solid var(--primary);border-radius:10px;padding:24px;text-align:center;margin-top:36px}
+        [data-theme="dark"] .cta-box{background:linear-gradient(135deg,rgba(205,164,52,0.08),rgba(216,100,56,0.1))}
+        .cta-box h3{color:var(--accent);margin-bottom:8px}
+        .cta-btn{display:inline-block;background:var(--primary);color:#fff;padding:11px 24px;border-radius:8px;text-decoration:none;font-family:var(--header-font);font-weight:bold;transition:opacity 0.2s;margin-top:10px}
+        .cta-btn:hover{opacity:0.85}
+        ul,ol{padding-left:22px}
+        li{margin-bottom:9px}
+        a{color:var(--accent)}
+        .tag{display:inline-block;background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:0.78rem;color:var(--subtitle);margin:2px}
+        .meta{color:var(--subtitle);font-size:0.85rem;text-align:center;margin-bottom:22px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+        .site-footer{text-align:center;font-size:0.9rem;color:var(--subtitle);margin-top:10px;margin-bottom:20px}
+        .site-footer .heart{color:#e74c3c}
+        @media(max-width:600px){article{padding:22px}h1{font-size:1.85rem}}
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="/" class="btn-back">&#8592; Simulator</a>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">&#9728;&#65039; Light Mode</button>
+    </div>
+    <h1>The Titanic and Morse Code</h1>
+    <p class="subtitle">Two operators, one radio room, 705 lives — and a law passed 73 days later.</p>
+    <div class="meta">
+        <span>&#128337; 9 min read</span>
+        <span><span class="tag">History</span><span class="tag">SOS</span><span class="tag">Maritime</span><span class="tag">1912</span></span>
+    </div>
+    <article>
+
+        <figure>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/RMS_Titanic_3.jpg/1280px-RMS_Titanic_3.jpg"
+                 alt="RMS Titanic departing Southampton, April 1912"
+                 loading="lazy">
+            <figcaption>RMS Titanic departing Southampton on April 10, 1912. Four days later, Morse code would be the only thing standing between 705 people and the ocean. (Public domain, Library of Congress)</figcaption>
+        </figure>
+
+        <p>At 11:40 PM on April 14, 1912, the RMS Titanic struck an iceberg in the North Atlantic. In the hours that followed, the ship's two Marconi wireless operators — <strong>Jack Phillips</strong> and <strong>Harold Bride</strong> — sat in a cramped radio shack and tapped out a message that would echo through history.</p>
+
+        <p>It was the first major use of the SOS distress signal in a real maritime emergency. And the decisions made in that radio room — which ships to contact, what frequencies to use, and critically, which messages to prioritise — directly determined who lived and who died.</p>
+
+        <h2>The Radio Room on the Titanic</h2>
+
+        <figure>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Titanic_radio_room.jpg/800px-Titanic_radio_room.jpg"
+                 alt="Replica of the Titanic's Marconi wireless telegraph room"
+                 loading="lazy">
+            <figcaption>A recreation of the Titanic's Marconi wireless room. Phillips and Bride worked rotating 12-hour shifts — Phillips was on duty when the iceberg hit. (Public domain)</figcaption>
+        </figure>
+
+        <p>The Titanic's Marconi wireless set was one of the most powerful at sea, with a range of roughly 400 miles at night. But in 1912, there was no dedicated distress frequency, no 24-hour radio watch requirement, and no international protocol for who had priority on the airwaves.</p>
+
+        <p>Phillips and Bride had spent much of April 14 clearing a massive backlog of passenger telegrams — wealthy first-class guests sending social messages to New York. This was standard practice: the wireless operators were paid by the Marconi Company, not the White Star Line, and passenger revenue was their priority.</p>
+
+        <blockquote>
+            "Come at once. We have struck a berg. It's a CQD, OM. Position 41.46 N. 50.14 W."
+            <cite>— Jack Phillips's first distress transmission, approximately 12:15 AM, April 15, 1912</cite>
+        </blockquote>
+
+        <h2>CQD vs SOS: A Protocol in Transition</h2>
+
+        <p>Phillips initially sent <strong>CQD</strong> — the older British distress signal meaning roughly "all stations, danger." The international conference in Berlin had agreed on SOS as the new standard in 1906, but old habits die hard. Bride later joked to Phillips: <em>"Send SOS — it's the new call, and it may be your last chance to send it."</em> Phillips switched, and for the next two hours sent both alternately.</p>
+
+        <div class="hl">
+            <strong>CQD in Morse:</strong>
+            <div class="morse">-.-. --.- -.. &nbsp; &nbsp; -.. .-.</div>
+            <strong>SOS in Morse:</strong>
+            <div class="morse">... --- ...</div>
+            <p style="margin:0;font-size:0.9rem">SOS won out specifically because it's impossible to misread — three of each, perfectly symmetrical, even in terrible signal conditions.</p>
+        </div>
+
+        <h2>The Ships That Heard — and Didn't</h2>
+
+        <p>Several ships were within range that night. The responses reveal everything broken about early maritime radio:</p>
+
+        <table>
+            <tr><th>Ship</th><th>Distance</th><th>Response</th></tr>
+            <tr><td><strong>Carpathia</strong></td><td>~58 miles</td><td>Operator Harold Cottam was about to go to bed when he caught the distress call. Turned back immediately — rescued 705 survivors.</td></tr>
+            <tr><td><strong>Californian</strong></td><td>~10–20 miles</td><td>Wireless operator Cyril Evans had switched off his set and gone to sleep at 11:30 PM — 10 minutes before the collision. Never heard a word.</td></tr>
+            <tr><td><strong>Frankfurt</strong></td><td>~150 miles</td><td>Heard the call but its operator's slow, unclear response frustrated Phillips. He reportedly transmitted: "You fool, stdbi [stand by], I am busy."</td></tr>
+            <tr><td><strong>Olympic</strong></td><td>~500 miles</td><td>Titanic's sister ship heard clearly but was too far to help in time.</td></tr>
+        </table>
+
+        <p>The Californian's proximity — and her utter radio silence — caused a public outcry that changed maritime law forever. The story of what her officers saw (mysterious rockets from a nearby ship) and did nothing about remains one of the most debated episodes in naval history.</p>
+
+        <h2>Harold Bride: The Survivor Who Kept Tapping</h2>
+
+        <figure>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Harold_Bride.jpg/500px-Harold_Bride.jpg"
+                 alt="Harold Bride, junior wireless operator on the Titanic"
+                 loading="lazy">
+            <figcaption>Harold Bride, 22 years old, photographed after his rescue. He was pulled off a capsized lifeboat with frostbitten feet — and gave his first newspaper interview within hours. (Public domain)</figcaption>
+        </figure>
+
+        <p>Jack Phillips stayed at his post transmitting until the very end. He was last seen by Bride still at the key as water flooded the radio room. He did not survive. Phillips was 25 years old.</p>
+
+        <p>Harold Bride, 22, was swept off the ship and clung to an overturned collapsible lifeboat until the Carpathia arrived. Once rescued — feet badly frostbitten — he was taken to the Carpathia's own wireless room, where he helped the exhausted operator manage the flood of messages about the disaster. He kept tapping Morse code for hours.</p>
+
+        <h2>The Law Changed in 73 Days</h2>
+
+        <p>The inquiry findings were damning. By July 1912 — just 73 days after the sinking — the international community had agreed on rules that remain in force today:</p>
+
+        <ul>
+            <li>All passenger ships must maintain <strong>24-hour wireless watches</strong></li>
+            <li>A dedicated <strong>distress frequency</strong> (500 kHz) must always be monitored</li>
+            <li>Ships must have <strong>backup power</strong> for wireless equipment</li>
+            <li>Lifeboat capacity regulations were massively overhauled</li>
+        </ul>
+
+        <p>The Titanic disaster didn't just reshape maritime safety — it legitimised wireless telegraphy as critical infrastructure. Within a decade, every significant vessel at sea would be required to carry a trained Morse operator. The clicking key went from novelty to lifeline.</p>
+
+        <div class="fact-strip">
+            <div class="fact-card"><span class="num">705</span><span class="lbl">Survivors rescued by Carpathia</span></div>
+            <div class="fact-card"><span class="num">73</span><span class="lbl">Days until new maritime radio laws</span></div>
+            <div class="fact-card"><span class="num">10mi</span><span class="lbl">Distance of silent Californian</span></div>
+            <div class="fact-card"><span class="num">25</span><span class="lbl">Age of Jack Phillips when he died</span></div>
+        </div>
+
+        <div class="cta-box">
+            <h3>Try it yourself</h3>
+            <p>Everything in this article comes alive on our free interactive simulator.</p>
+            <a href="/" class="cta-btn">&#9654; Open the Simulator</a>
+        </div>
+    </article>
+    <div class="site-footer">Made with <span class="heart">&#10084;</span> by BM</div>
+<script>
+    let isDarkMode=true;
+    const savedTheme=localStorage.getItem('morseTheme');
+    if(savedTheme==='light'){isDarkMode=false;document.documentElement.setAttribute('data-theme','light');document.getElementById('themeBtn').innerText='🌙 Dark Mode';}
+    function toggleTheme(){isDarkMode=!isDarkMode;document.documentElement.setAttribute('data-theme',isDarkMode?'dark':'light');document.getElementById('themeBtn').innerText=isDarkMode?'☀️ Light Mode':'🌙 Dark Mode';localStorage.setItem('morseTheme',isDarkMode?'dark':'light');}
+</script>
+
+<!-- ═══ SIDE DRAWER NAV (shared across all pages) ═══ -->
+<style>
+  .sd-hamburger{position:fixed;top:14px;left:14px;z-index:2000;background:var(--container-bg);border:2px solid var(--border);border-radius:8px;width:42px;height:42px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,0.2);transition:border-color 0.2s}
+  .sd-hamburger:hover{border-color:var(--primary)}
+  .sd-hamburger span{display:block;width:20px;height:2px;background:var(--primary);border-radius:2px;transition:all 0.3s}
+  .sd-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .sd-hamburger.open span:nth-child(2){opacity:0}
+  .sd-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .sd-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:1500;backdrop-filter:blur(2px)}
+  .sd-overlay.open{display:block}
+  .sd-drawer{position:fixed;top:0;left:-280px;width:260px;height:100%;background:var(--container-bg);border-right:2px solid var(--border);z-index:1600;display:flex;flex-direction:column;padding:0;box-shadow:4px 0 20px rgba(0,0,0,0.3);transition:left 0.28s cubic-bezier(0.4,0,0.2,1);overflow-y:auto}
+  .sd-drawer.open{left:0}
+  .sd-drawer-header{padding:72px 20px 16px 20px;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:4px}
+  .sd-drawer-header strong{font-family:'Playfair Display',serif;color:var(--primary);font-size:1.15rem;letter-spacing:0.5px}
+  .sd-drawer-header span{font-family:'Comic Neue',sans-serif;font-size:0.8rem;color:var(--subtitle)}
+  .sd-nav-section{padding:10px 0;border-bottom:1px solid var(--border)}
+  .sd-nav-section:last-child{border-bottom:none}
+  .sd-nav-label{font-family:'Comic Neue',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--subtitle);padding:6px 20px 4px 20px}
+  .sd-nav-link{display:flex;align-items:center;gap:12px;padding:11px 20px;color:var(--text);text-decoration:none;font-family:'Comic Neue',sans-serif;font-size:0.95rem;font-weight:700;transition:all 0.15s;border-left:3px solid transparent}
+  .sd-nav-link:hover,.sd-nav-link.active{background:var(--bg);color:var(--primary);border-left-color:var(--primary)}
+  /* Clearance: keep content below the fixed hamburger button */
+  body{padding-top:80px!important}
+  .top-bar{margin-top:0;width:100%!important;box-sizing:border-box!important}
+  .sd-nav-link .sd-icon{font-size:1.1rem;width:20px;text-align:center;flex-shrink:0}
+</style>
+
+<button class="sd-hamburger" id="sdHamburger" onclick="sdToggle()" aria-label="Open navigation menu">
+  <span></span><span></span><span></span>
+</button>
+<div class="sd-overlay" id="sdOverlay" onclick="sdClose()"></div>
+<nav class="sd-drawer" id="sdDrawer">
+  <div class="sd-drawer-header">
+    <strong>&#x26A1; Morse Telegraph</strong>
+    <span>Navigation</span>
+  </div>
+  <div class="sd-nav-section">
+    <div class="sd-nav-label">Tool</div>
+    <a href="/" class="sd-nav-link" data-path="/"><span class="sd-icon">&#x1F4F9;</span>Simulator</a>
+    <a href="/learn" class="sd-nav-link" data-path="/learn"><span class="sd-icon">&#x1F4D6;</span>Learn Guide</a>
+  </div>
+  <div class="sd-nav-section">
+    <div class="sd-nav-label">Articles</div>
+    <a href="/articles/what-is-morse-code" class="sd-nav-link" data-path="/articles/what-is-morse-code"><span class="sd-icon">&#x2753;</span>What is Morse Code?</a>
+    <a href="/articles/morse-code-alphabet-chart" class="sd-nav-link" data-path="/articles/morse-code-alphabet-chart"><span class="sd-icon">&#x1F524;</span>Alphabet Chart</a>
+    <a href="/articles/how-to-learn-morse-code-fast" class="sd-nav-link" data-path="/articles/how-to-learn-morse-code-fast"><span class="sd-icon">&#x26A1;</span>Learn Fast</a>
+    <a href="/articles/morse-code-translator-guide" class="sd-nav-link" data-path="/articles/morse-code-translator-guide"><span class="sd-icon">&#x1F504;</span>Translator Guide</a>
+    <a href="/articles/history-of-telegraph-communication" class="sd-nav-link" data-path="/articles/history-of-telegraph-communication"><span class="sd-icon">&#x1F4DC;</span>Telegraph History</a>
+    <a href="/articles/sos-morse-code" class="sd-nav-link" data-path="/articles/sos-morse-code"><span class="sd-icon">&#x1F198;</span>SOS Guide</a>
+  </div>
+  <div class="sd-nav-section">
+    <div class="sd-nav-label">Site</div>
+    <a href="/about" class="sd-nav-link" data-path="/about"><span class="sd-icon">&#x2139;&#xFE0F;</span>About</a>
+    <a href="/contact" class="sd-nav-link" data-path="/contact"><span class="sd-icon">&#x2709;&#xFE0F;</span>Contact</a>
+    <a href="/privacy" class="sd-nav-link" data-path="/privacy"><span class="sd-icon">&#x1F512;</span>Privacy Policy</a>
+    <a href="/terms" class="sd-nav-link" data-path="/terms"><span class="sd-icon">&#x1F4CB;</span>Terms of Service</a>
+  </div>
+</nav>
+<script>
+  function sdToggle(){var h=document.getElementById('sdHamburger'),d=document.getElementById('sdDrawer'),o=document.getElementById('sdOverlay');h.classList.toggle('open');d.classList.toggle('open');o.classList.toggle('open');document.body.style.overflow=d.classList.contains('open')?'hidden':'';}
+  function sdClose(){var h=document.getElementById('sdHamburger'),d=document.getElementById('sdDrawer'),o=document.getElementById('sdOverlay');h.classList.remove('open');d.classList.remove('open');o.classList.remove('open');document.body.style.overflow='';}
+  // Mark the active link
+  (function(){var path=window.location.pathname.replace(/\/$/,'');document.querySelectorAll('.sd-nav-link').forEach(function(a){if(a.getAttribute('data-path')===path||(path===''&&a.getAttribute('data-path')==='/')){a.classList.add('active');}});})();
+  // Close on Escape
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')sdClose();});
+</script>
+<!-- ═══ END SIDE DRAWER ═══ -->
+</body>
+</html>

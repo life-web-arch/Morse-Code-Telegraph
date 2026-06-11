@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Blink, One Switch, One Voice: Morse Code as Disability Technology</title>
+    <meta name="description" content="How Morse code gives communication back to people with ALS, locked-in syndrome, and severe motor disabilities — from Google's keyboard to Cold War POWs.">
+    <link rel="canonical" href="https://morse-code-telegraph.vercel.app/articles/morse-code-accessibility">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,400;0,700;1,400;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root{--bg:#f3ebdb;--container-bg:#faf6f0;--text:#3c2a21;--subtitle:#6d594b;--border:#d4c5b0;--primary:#8b5a2b;--accent:#b54924;--header-font:'Playfair Display',serif;--body-font:'Comic Neue',sans-serif}
+        [data-theme="dark"]{--bg:#1a1816;--container-bg:#282522;--text:#e0d4c3;--subtitle:#a39b8e;--border:#443e38;--primary:#cda434;--accent:#d86438}
+        *{box-sizing:border-box;transition:background-color 0.3s,color 0.3s,border-color 0.3s;-webkit-tap-highlight-color:transparent}
+        body{background-color:var(--bg);color:var(--text);margin:0;padding:20px;display:flex;flex-direction:column;align-items:center;font-family:var(--body-font);line-height:1.85}
+        h1,h2,h3{font-family:var(--header-font);color:var(--primary);margin:0}
+        h1{font-size:2.3rem;margin-bottom:8px;text-align:center;line-height:1.2}
+        h2{font-size:1.55rem;margin-top:36px;margin-bottom:12px;border-bottom:2px solid var(--border);padding-bottom:8px}
+        h3{font-size:1.15rem;margin-top:22px;margin-bottom:8px;color:var(--accent)}
+        p{margin:0 0 16px 0}
+        p.subtitle{text-align:center;color:var(--subtitle);max-width:700px;margin-bottom:25px;font-size:1.05rem}
+        .top-bar{width:100%;max-width:960px;display:flex;justify-content:space-between;margin-bottom:20px;align-items:center}
+        .theme-toggle,.btn-back{background:var(--container-bg);border:2px solid var(--border);border-radius:50px;cursor:pointer;color:var(--primary);font-family:var(--header-font);font-weight:bold;text-decoration:none;display:inline-block;box-shadow:0 2px 5px rgba(0,0,0,0.1);transition:transform 0.1s}
+        .theme-toggle{padding:5px 15px;font-size:1rem}
+        .btn-back{padding:5px 12px;font-size:0.9rem}
+        .theme-toggle:hover,.btn-back:hover{border-color:var(--primary);transform:translateY(-2px)}
+        article{width:100%;max-width:860px;background:var(--container-bg);padding:40px;border-radius:12px;box-shadow:0 12px 25px rgba(0,0,0,0.15);border:1px solid var(--border);margin-bottom:30px;font-size:1.05rem}
+        /* Pull quote */
+        blockquote{border-left:5px solid var(--primary);margin:28px 0;padding:16px 22px;background:var(--bg);border-radius:0 8px 8px 0;font-family:var(--header-font);font-size:1.15rem;font-style:italic;color:var(--primary);line-height:1.5}
+        blockquote cite{display:block;font-style:normal;font-size:0.82rem;color:var(--subtitle);margin-top:8px;font-family:var(--body-font)}
+        /* Highlight box */
+        .hl{background:var(--bg);border-left:5px solid var(--accent);padding:16px 20px;margin:22px 0;border-radius:0 8px 8px 0}
+        .hl strong{color:var(--primary)}
+        /* Morse visual */
+        .morse{font-size:1.7rem;font-weight:bold;letter-spacing:5px;color:var(--accent);text-align:center;margin:14px 0;font-family:'Courier Prime',monospace;word-break:break-all}
+        /* Image with caption */
+        figure{margin:28px 0;text-align:center}
+        figure img{width:100%;max-width:700px;border-radius:8px;border:1px solid var(--border);box-shadow:0 6px 20px rgba(0,0,0,0.12)}
+        figcaption{font-size:0.8rem;color:var(--subtitle);margin-top:8px;font-style:italic}
+        /* Two-column image grid */
+        .img-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+        .img-grid figure{margin:0}
+        @media(max-width:600px){.img-grid{grid-template-columns:1fr}}
+        /* Fact card strip */
+        .fact-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:24px 0}
+        .fact-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+        .fact-card .num{font-family:var(--header-font);font-size:1.9rem;color:var(--primary);display:block;line-height:1}
+        .fact-card .lbl{font-size:0.8rem;color:var(--subtitle);margin-top:4px;display:block}
+        /* Table */
+        table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.95rem}
+        th,td{padding:10px 12px;border:1px solid var(--border);text-align:left}
+        th{background:var(--bg);color:var(--primary);font-family:var(--header-font)}
+        tr:nth-child(even) td{background:rgba(0,0,0,0.02)}
+        [data-theme="dark"] tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
+        /* CTA */
+        .cta-box{background:linear-gradient(135deg,rgba(139,90,43,0.1),rgba(181,73,36,0.07));border:1px solid var(--primary);border-radius:10px;padding:24px;text-align:center;margin-top:36px}
+        [data-theme="dark"] .cta-box{background:linear-gradient(135deg,rgba(205,164,52,0.08),rgba(216,100,56,0.1))}
+        .cta-box h3{color:var(--accent);margin-bottom:8px}
+        .cta-btn{display:inline-block;background:var(--primary);color:#fff;padding:11px 24px;border-radius:8px;text-decoration:none;font-family:var(--header-font);font-weight:bold;transition:opacity 0.2s;margin-top:10px}
+        .cta-btn:hover{opacity:0.85}
+        ul,ol{padding-left:22px}
+        li{margin-bottom:9px}
+        a{color:var(--accent)}
+        .tag{display:inline-block;background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:0.78rem;color:var(--subtitle);margin:2px}
+        .meta{color:var(--subtitle);font-size:0.85rem;text-align:center;margin-bottom:22px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+        .site-footer{text-align:center;font-size:0.9rem;color:var(--subtitle);margin-top:10px;margin-bottom:20px}
+        .site-footer .heart{color:#e74c3c}
+        @media(max-width:600px){article{padding:22px}h1{font-size:1.85rem}}
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="/" class="btn-back">&#8592; Simulator</a>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">&#9728;&#65039; Light Mode</button>
+    </div>
+    <h1>One Blink, One Switch, One Voice</h1>
+    <p class="subtitle">The 180-year-old code that modern disability technology still can't replace.</p>
+    <div class="meta">
+        <span>&#128337; 8 min read</span>
+        <span><span class="tag">Accessibility</span><span class="tag">AAC</span><span class="tag">Disability Tech</span><span class="tag">ALS</span></span>
+    </div>
+    <article>
+
+        <p>In 1995, a French journalist named <strong>Jean-Dominique Bauby</strong> suffered a massive stroke that left him with complete paralysis except for his left eyelid. To write his memoir — <em>The Diving Bell and the Butterfly</em> — his transcriptionist would recite letters of the alphabet in frequency order, and Bauby would blink when she reached the right one.</p>
+
+        <p>It took him 200,000 blinks. The book was published two days before he died.</p>
+
+        <p>Bauby's method was not Morse code — but it was the same idea: reduce communication to the simplest possible binary signal (open/closed, dot/dash) and build meaning from there. This is exactly what Morse code has been doing for people with severe physical disabilities since the 1970s.</p>
+
+        <h2>Google's Morse Code Keyboard</h2>
+
+        <figure>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Gboard_logo.png/240px-Gboard_logo.png"
+                 alt="Gboard logo"
+                 loading="lazy"
+                 style="max-width:180px;margin:0 auto;display:block;background:transparent;border:none;box-shadow:none;">
+            <figcaption>Gboard (Google Keyboard) added native Morse code input in 2018, making it available to hundreds of millions of Android users.</figcaption>
+        </figure>
+
+        <p>In 2018, Google added Morse code as an official input method to Gboard, its keyboard app used by hundreds of millions of people. This came directly from a collaboration with <strong>Tania Finlayson</strong>, a woman who has had cerebral palsy from birth and has communicated using Morse code for over 30 years via a single cheek switch.</p>
+
+        <p>Finlayson can type faster in Morse code than most people type on a standard keyboard. She composes emails, texts, and social media posts — all via a device that detects a small muscle movement in her cheek and translates it into dots and dashes. The Google team built their keyboard after spending a week trying to match her speed.</p>
+
+        <blockquote>
+            "Morse code gave me a voice. It's not a historical curiosity — it's freedom."
+            <cite>— Tania Finlayson, AAC user and Morse code advocate</cite>
+        </blockquote>
+
+        <h2>How Switch-Based Morse Input Works</h2>
+
+        <div class="hl">
+            <strong>The two-switch setup:</strong>
+            <ul style="margin:8px 0 0 0">
+                <li><strong>Short press</strong> = dot</li>
+                <li><strong>Long press</strong> = dash</li>
+                <li><strong>Pause</strong> = letter break / word break</li>
+            </ul>
+            <p style="margin:8px 0 0 0;font-size:0.9rem">The switch can be activated by any controllable body part: thumb, cheek muscle, eyebrow, toe, tongue, or even breath pressure. This is why it works for people with extremely limited motor function.</p>
+        </div>
+
+        <p>Modern implementations are remarkably intelligent. Predictive text algorithms watch your Morse input in real time and start suggesting words after two or three letters — just like autocomplete on a smartphone. Combined with the muscle-memory speed that experienced users develop, the result is genuine conversational speed.</p>
+
+        <h2>Eye-Tracking Systems and the Morse Principle</h2>
+
+        <p>Modern eye-tracking communication devices — the kind Stephen Hawking used — operate on a related principle. The screen displays letters or symbols; the user dwells their gaze on a target to select it. At its core, this is dwell-time encoding: variation in the duration of a signal (gaze contact) carries meaning. Hawking's speech synthesiser, generating his famous synthesised voice, was ultimately powered by a binary signal from a cheek muscle — one switch, one contact at a time.</p>
+
+        <p>The conceptual line from Samuel Morse tapping a key in 1844 to Stephen Hawking discussing cosmology via a cheek twitch in 2018 is direct and unbroken.</p>
+
+        <h2>ALS, Locked-In Syndrome, and the Last Line of Communication</h2>
+
+        <figure>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Stephen_Hawking.StarChild.jpg/800px-Stephen_Hawking.StarChild.jpg"
+                 alt="Stephen Hawking at NASA, 1980"
+                 loading="lazy">
+            <figcaption>Stephen Hawking at NASA in 1980, before his voice fully failed him. He would go on to communicate — and write five books, give hundreds of lectures, and appear on The Simpsons — via single-switch binary input. (NASA, public domain)</figcaption>
+        </figure>
+
+        <p>For people in the late stages of ALS (motor neuron disease), communication often narrows to a single reliable muscle — an eyelid, a cheek, a toe. Morse code is frequently the method of choice because:</p>
+
+        <ul>
+            <li>It requires only one controllable body part</li>
+            <li>It needs no visual display — it can be purely tactile or auditory</li>
+            <li>It works with extremely simple, robust hardware</li>
+            <li>It has no subscription fees, no proprietary lock-in, no cloud dependency</li>
+            <li>Skilled users can achieve 20–30 words per minute</li>
+        </ul>
+
+        <h2>Military Use: SERE and Prisoner Communication</h2>
+
+        <p>Morse code has also functioned as an accessibility tool in a darker sense: for prisoners of war. During the Vietnam War, American POWs in the Hanoi Hilton prison used a <strong>tap code</strong> — a simplified grid-based variant of Morse — to communicate through walls, pipes, and concrete floors.</p>
+
+        <p>Commander Jeremiah Denton, shot down in 1965, was forced to appear in a televised propaganda interview. While speaking words scripted by his captors, he blinked his eyes in Morse code spelling <strong>T-O-R-T-U-R-E</strong> — the first confirmation the outside world received of how American POWs were being treated.</p>
+
+        <div class="hl">
+            <strong>The tap code (simplified prison Morse):</strong>
+            <p style="margin:8px 0 4px 0">A 5×5 grid of letters (C/K combined). One series of taps = row, pause, another series = column. So A = tap-tap (row 1), tap (column 1).</p>
+            <p style="margin:0;font-size:0.9rem">It can be sent through any surface that conducts vibration: walls, pipes, floors, even the sole of a shared shoe.</p>
+        </div>
+
+        <div class="fact-strip">
+            <div class="fact-card"><span class="num">200K</span><span class="lbl">Blinks to write The Diving Bell</span></div>
+            <div class="fact-card"><span class="num">30+</span><span class="lbl">Years Tania Finlayson has used Morse</span></div>
+            <div class="fact-card"><span class="num">1</span><span class="lbl">Muscle needed for full communication</span></div>
+            <div class="fact-card"><span class="num">2018</span><span class="lbl">Gboard adds native Morse input</span></div>
+        </div>
+
+        <div class="cta-box">
+            <h3>Try it yourself</h3>
+            <p>Everything in this article comes alive on our free interactive simulator.</p>
+            <a href="/" class="cta-btn">&#9654; Open the Simulator</a>
+        </div>
+    </article>
+    <div class="site-footer">Made with <span class="heart">&#10084;</span> by BM</div>
+<script>
+    let isDarkMode=true;
+    const savedTheme=localStorage.getItem('morseTheme');
+    if(savedTheme==='light'){isDarkMode=false;document.documentElement.setAttribute('data-theme','light');document.getElementById('themeBtn').innerText='🌙 Dark Mode';}
+    function toggleTheme(){isDarkMode=!isDarkMode;document.documentElement.setAttribute('data-theme',isDarkMode?'dark':'light');document.getElementById('themeBtn').innerText=isDarkMode?'☀️ Light Mode':'🌙 Dark Mode';localStorage.setItem('morseTheme',isDarkMode?'dark':'light');}
+</script>
+
+<!-- ═══ SIDE DRAWER NAV (shared across all pages) ═══ -->
+<style>
+  .sd-hamburger{position:fixed;top:14px;left:14px;z-index:2000;background:var(--container-bg);border:2px solid var(--border);border-radius:8px;width:42px;height:42px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,0.2);transition:border-color 0.2s}
+  .sd-hamburger:hover{border-color:var(--primary)}
+  .sd-hamburger span{display:block;width:20px;height:2px;background:var(--primary);border-radius:2px;transition:all 0.3s}
+  .sd-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .sd-hamburger.open span:nth-child(2){opacity:0}
+  .sd-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .sd-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:1500;backdrop-filter:blur(2px)}
+  .sd-overlay.open{display:block}
+  .sd-drawer{position:fixed;top:0;left:-280px;width:260px;height:100%;background:var(--container-bg);border-right:2px solid var(--border);z-index:1600;display:flex;flex-direction:column;padding:0;box-shadow:4px 0 20px rgba(0,0,0,0.3);transition:left 0.28s cubic-bezier(0.4,0,0.2,1);overflow-y:auto}
+  .sd-drawer.open{left:0}
+  .sd-drawer-header{padding:72px 20px 16px 20px;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:4px}
+  .sd-drawer-header strong{font-family:'Playfair Display',serif;color:var(--primary);font-size:1.15rem;letter-spacing:0.5px}
+  .sd-drawer-header span{font-family:'Comic Neue',sans-serif;font-size:0.8rem;color:var(--subtitle)}
+  .sd-nav-section{padding:10px 0;border-bottom:1px solid var(--border)}
+  .sd-nav-section:last-child{border-bottom:none}
+  .sd-nav-label{font-family:'Comic Neue',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--subtitle);padding:6px 20px 4px 20px}
+  .sd-nav-link{display:flex;align-items:center;gap:12px;padding:11px 20px;color:var(--text);text-decoration:none;font-family:'Comic Neue',sans-serif;font-size:0.95rem;font-weight:700;transition:all 0.15s;border-left:3px solid transparent}
+  .sd-nav-link:hover,.sd-nav-link.active{background:var(--bg);color:var(--primary);border-left-color:var(--primary)}
+  /* Clearance: keep content below the fixed hamburger button */
+  body{padding-top:80px!important}
+  .top-bar{margin-top:0;width:100%!important;box-sizing:border-box!important}
+  .sd-nav-link .sd-icon{font-size:1.1rem;width:20px;text-align:center;flex-shrink:0}
+</style>
+
+<button class="sd-hamburger" id="sdHamburger" onclick="sdToggle()" aria-label="Open navigation menu">
+  <span></span><span></span><span></span>
+</button>
+<div class="sd-overlay" id="sdOverlay" onclick="sdClose()"></div>
+<nav class="sd-drawer" id="sdDrawer">
+  <div class="sd-drawer-header">
+    <strong>&#x26A1; Morse Telegraph</strong>
+    <span>Navigation</span>
+  </div>
+  <div class="sd-nav-section">
+    <div class="sd-nav-label">Tool</div>
+    <a href="/" class="sd-nav-link" data-path="/"><span class="sd-icon">&#x1F4F9;</span>Simulator</a>
+    <a href="/learn" class="sd-nav-link" data-path="/learn"><span class="sd-icon">&#x1F4D6;</span>Learn Guide</a>
+  </div>
+  <div class="sd-nav-section">
+    <div class="sd-nav-label">Articles</div>
+    <a href="/articles/what-is-morse-code" class="sd-nav-link" data-path="/articles/what-is-morse-code"><span class="sd-icon">&#x2753;</span>What is Morse Code?</a>
+    <a href="/articles/morse-code-alphabet-chart" class="sd-nav-link" data-path="/articles/morse-code-alphabet-chart"><span class="sd-icon">&#x1F524;</span>Alphabet Chart</a>
+    <a href="/articles/how-to-learn-morse-code-fast" class="sd-nav-link" data-path="/articles/how-to-learn-morse-code-fast"><span class="sd-icon">&#x26A1;</span>Learn Fast</a>
+    <a href="/articles/morse-code-translator-guide" class="sd-nav-link" data-path="/articles/morse-code-translator-guide"><span class="sd-icon">&#x1F504;</span>Translator Guide</a>
+    <a href="/articles/history-of-telegraph-communication" class="sd-nav-link" data-path="/articles/history-of-telegraph-communication"><span class="sd-icon">&#x1F4DC;</span>Telegraph History</a>
+    <a href="/articles/sos-morse-code" class="sd-nav-link" data-path="/articles/sos-morse-code"><span class="sd-icon">&#x1F198;</span>SOS Guide</a>
+  </div>
+  <div class="sd-nav-section">
+    <div class="sd-nav-label">Site</div>
+    <a href="/about" class="sd-nav-link" data-path="/about"><span class="sd-icon">&#x2139;&#xFE0F;</span>About</a>
+    <a href="/contact" class="sd-nav-link" data-path="/contact"><span class="sd-icon">&#x2709;&#xFE0F;</span>Contact</a>
+    <a href="/privacy" class="sd-nav-link" data-path="/privacy"><span class="sd-icon">&#x1F512;</span>Privacy Policy</a>
+    <a href="/terms" class="sd-nav-link" data-path="/terms"><span class="sd-icon">&#x1F4CB;</span>Terms of Service</a>
+  </div>
+</nav>
+<script>
+  function sdToggle(){var h=document.getElementById('sdHamburger'),d=document.getElementById('sdDrawer'),o=document.getElementById('sdOverlay');h.classList.toggle('open');d.classList.toggle('open');o.classList.toggle('open');document.body.style.overflow=d.classList.contains('open')?'hidden':'';}
+  function sdClose(){var h=document.getElementById('sdHamburger'),d=document.getElementById('sdDrawer'),o=document.getElementById('sdOverlay');h.classList.remove('open');d.classList.remove('open');o.classList.remove('open');document.body.style.overflow='';}
+  // Mark the active link
+  (function(){var path=window.location.pathname.replace(/\/$/,'');document.querySelectorAll('.sd-nav-link').forEach(function(a){if(a.getAttribute('data-path')===path||(path===''&&a.getAttribute('data-path')==='/')){a.classList.add('active');}});})();
+  // Close on Escape
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')sdClose();});
+</script>
+<!-- ═══ END SIDE DRAWER ═══ -->
+</body>
+</html>
