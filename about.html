@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Morse Code Telegraph Simulator</title>
+    <meta name="description" content="Learn about Morse Code Telegraph Simulator — a free, interactive tool to translate, encode, decode, and practice Morse code online.">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg:#f3ebdb;--container-bg:#faf6f0;--text:#3c2a21;--subtitle:#6d594b;--border:#d4c5b0;--primary:#8b5a2b;--accent:#b54924;--header-font:'Playfair Display',serif;--body-font:'Courier Prime',Courier,monospace; }
+        [data-theme="dark"] { --bg:#1a1816;--container-bg:#282522;--text:#e0d4c3;--subtitle:#a39b8e;--border:#443e38;--primary:#cda434;--accent:#d86438; }
+        *{box-sizing:border-box;transition:background-color 0.3s,color 0.3s,border-color 0.3s;-webkit-tap-highlight-color:transparent}
+        body{background-color:var(--bg);color:var(--text);margin:0;padding:20px;display:flex;flex-direction:column;align-items:center;font-family:var(--body-font);line-height:1.7}
+        h1,h2,h3{font-family:var(--header-font);color:var(--primary);margin:0}
+        h1{font-size:2.5rem;margin-bottom:5px;text-align:center}
+        h2{font-size:1.7rem;margin-top:30px;margin-bottom:12px;border-bottom:2px solid var(--border);padding-bottom:8px}
+        p.subtitle{text-align:center;color:var(--subtitle);max-width:650px;margin-bottom:25px;font-size:1.1rem}
+        .top-bar{width:100%;max-width:1100px;display:flex;justify-content:space-between;margin-bottom:20px;align-items:center}
+        .theme-toggle,.btn-back{background:var(--container-bg);border:2px solid var(--border);border-radius:50px;cursor:pointer;color:var(--primary);font-family:var(--header-font);font-weight:bold;text-decoration:none;display:inline-block;box-shadow:0 2px 5px rgba(0,0,0,0.1);transition:transform 0.1s}
+        .theme-toggle{padding:5px 15px;font-size:1rem}
+        .btn-back{padding:5px 12px;font-size:0.9rem}
+        .theme-toggle:hover,.btn-back:hover{border-color:var(--primary);transform:translateY(-2px)}
+        .container{width:100%;max-width:1100px;background:var(--container-bg);padding:40px;border-radius:12px;box-shadow:0 12px 25px rgba(0,0,0,0.15);border:1px solid var(--border);margin-bottom:30px;font-size:1.05rem}
+        .highlight-box{background:var(--bg);border-left:5px solid var(--accent);padding:20px;margin:20px 0;border-radius:0 8px 8px 0}
+        .highlight-box ul{margin:0;padding-left:20px}
+        .highlight-box li{margin-bottom:10px}
+        .highlight-box strong{color:var(--primary)}
+        .nav-links{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:20px}
+        .nav-links a{background:var(--container-bg);border:1px solid var(--border);border-radius:6px;padding:6px 14px;color:var(--primary);text-decoration:none;font-size:0.9rem;transition:all 0.2s}
+        .nav-links a:hover{border-color:var(--primary);background:var(--primary);color:#fff}
+        .site-footer{text-align:center;font-family:var(--body-font);font-size:0.9rem;color:var(--subtitle);margin-top:10px;margin-bottom:20px}
+        .site-footer .heart{color:#e74c3c}
+        @media(max-width:600px){.container{padding:20px}h1{font-size:2rem}}
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="/" class="btn-back">⬅ Back to Simulator</a>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">☀️ Light Mode</button>
+    </div>
+
+    <h1>About Morse Code Telegraph</h1>
+    <p class="subtitle">A free, open interactive tool for learning, translating, and practicing Morse code.</p>
+
+    <nav class="nav-links">
+        <a href="/">Simulator</a>
+        <a href="/learn">Learn Guide</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+    </nav>
+
+    <div class="container">
+        <h2>What is Morse Code Telegraph?</h2>
+        <p>Morse Code Telegraph is a free, browser-based simulator and reference tool that lets anyone learn, translate, and practice Morse code — no downloads or accounts required. The tool runs entirely in your browser, works offline as a PWA, and supports encoding, decoding, audio playback, audio file decoding, and MP3/WAV export.</p>
+
+        <h2>Our Mission</h2>
+        <p>We believe communication history should be interactive and accessible. Morse code is not just a historical curiosity — it is still used in aviation (VOR identifiers), amateur radio, and accessibility devices. Our goal is to make it approachable for students, hobbyists, radio operators, and the simply curious.</p>
+
+        <h2>What the Tool Does</h2>
+        <div class="highlight-box">
+            <ul>
+                <li><strong>Live Telegraph Key</strong> — Tap or click to transmit Morse code in real time, just like a real telegraph operator.</li>
+                <li><strong>Text ↔ Morse Translator</strong> — Type English and get instant Morse code, or type Morse and get instant English.</li>
+                <li><strong>Audio Playback</strong> — Hear your Morse code played back through an authentic sine-wave oscillator.</li>
+                <li><strong>Audio Decoder</strong> — Upload an MP3, WAV, or other audio file and extract the Morse code from it automatically.</li>
+                <li><strong>Export Audio</strong> — Download your Morse code as an MP3, WAV, or WebM audio file.</li>
+                <li><strong>Reference Chart</strong> — Full ITU Morse code chart for letters, numbers, and punctuation with individual playback buttons.</li>
+                <li><strong>Dark &amp; Light Themes</strong> — Vintage sepia and dark charcoal themes to suit your environment.</li>
+                <li><strong>PWA / Offline Support</strong> — Install on your phone or desktop and use it without internet.</li>
+            </ul>
+        </div>
+
+        <h2>Technical Details</h2>
+        <p>The simulator is built with pure HTML, CSS, and vanilla JavaScript — zero frameworks, zero server-side processing. Audio is generated and processed entirely on the client using the Web Audio API. MP3 export uses the open-source <a href="https://github.com/nicktindall/lamejs" style="color:var(--accent)">lamejs</a> library. The site is hosted on Vercel with a global CDN for fast loading everywhere.</p>
+
+        <h2>Who Made This?</h2>
+        <p>This tool was created as an educational side project with a focus on performance, simplicity, and authentic vintage aesthetics. It is maintained by BM and updated continuously based on user feedback.</p>
+
+        <h2>Open to Feedback</h2>
+        <p>Found a bug? Want a feature? Reach out through the <a href="/contact" style="color:var(--accent)">Contact page</a>. We read every message.</p>
+    </div>
+
+    <div class="site-footer">Made with <span class="heart">❤</span> by BM</div>
+
+<script>
+    let isDarkMode = true;
+    const savedTheme = localStorage.getItem('morseTheme');
+    if (savedTheme === 'light') { isDarkMode = false; document.documentElement.setAttribute('data-theme','light'); document.getElementById('themeBtn').innerText='🌙 Dark Mode'; }
+    function toggleTheme() { isDarkMode=!isDarkMode; document.documentElement.setAttribute('data-theme',isDarkMode?'dark':'light'); document.getElementById('themeBtn').innerText=isDarkMode?'☀️ Light Mode':'🌙 Dark Mode'; localStorage.setItem('morseTheme',isDarkMode?'dark':'light'); }
+</script>
+</body>
+</html>

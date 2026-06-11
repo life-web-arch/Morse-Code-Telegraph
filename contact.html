@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Morse Code Telegraph Simulator</title>
+    <meta name="description" content="Contact the Morse Code Telegraph team — report bugs, suggest features, or ask any question about our free Morse code translator tool.">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#f3ebdb;--container-bg:#faf6f0;--text:#3c2a21;--subtitle:#6d594b;--border:#d4c5b0;--primary:#8b5a2b;--accent:#b54924;--header-font:'Playfair Display',serif;--body-font:'Courier Prime',Courier,monospace}
+        [data-theme="dark"]{--bg:#1a1816;--container-bg:#282522;--text:#e0d4c3;--subtitle:#a39b8e;--border:#443e38;--primary:#cda434;--accent:#d86438}
+        *{box-sizing:border-box;transition:background-color 0.3s,color 0.3s,border-color 0.3s;-webkit-tap-highlight-color:transparent}
+        body{background-color:var(--bg);color:var(--text);margin:0;padding:20px;display:flex;flex-direction:column;align-items:center;font-family:var(--body-font);line-height:1.7}
+        h1,h2{font-family:var(--header-font);color:var(--primary);margin:0}
+        h1{font-size:2.5rem;margin-bottom:5px;text-align:center}
+        h2{font-size:1.6rem;margin-top:28px;margin-bottom:12px;border-bottom:2px solid var(--border);padding-bottom:8px}
+        p.subtitle{text-align:center;color:var(--subtitle);max-width:650px;margin-bottom:25px;font-size:1.1rem}
+        .top-bar{width:100%;max-width:900px;display:flex;justify-content:space-between;margin-bottom:20px;align-items:center}
+        .theme-toggle,.btn-back{background:var(--container-bg);border:2px solid var(--border);border-radius:50px;cursor:pointer;color:var(--primary);font-family:var(--header-font);font-weight:bold;text-decoration:none;display:inline-block;box-shadow:0 2px 5px rgba(0,0,0,0.1);transition:transform 0.1s}
+        .theme-toggle{padding:5px 15px;font-size:1rem}
+        .btn-back{padding:5px 12px;font-size:0.9rem}
+        .theme-toggle:hover,.btn-back:hover{border-color:var(--primary);transform:translateY(-2px)}
+        .container{width:100%;max-width:900px;background:var(--container-bg);padding:40px;border-radius:12px;box-shadow:0 12px 25px rgba(0,0,0,0.15);border:1px solid var(--border);margin-bottom:30px;font-size:1.05rem}
+        .nav-links{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:20px}
+        .nav-links a{background:var(--container-bg);border:1px solid var(--border);border-radius:6px;padding:6px 14px;color:var(--primary);text-decoration:none;font-size:0.9rem;transition:all 0.2s}
+        .nav-links a:hover{border-color:var(--primary);background:var(--primary);color:#fff}
+        .field{display:flex;flex-direction:column;margin-bottom:20px}
+        .field label{font-weight:bold;color:var(--primary);margin-bottom:6px;font-family:var(--header-font)}
+        .field input,.field textarea,.field select{padding:12px;background:var(--bg);color:var(--text);border:2px solid var(--border);border-radius:8px;font-family:var(--body-font);font-size:1rem;outline:none;transition:border-color 0.2s}
+        .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--primary)}
+        .field textarea{resize:vertical;min-height:140px}
+        .btn-submit{padding:12px 28px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-family:var(--header-font);font-size:1.1rem;font-weight:bold;cursor:pointer;transition:opacity 0.2s,transform 0.1s;box-shadow:0 4px 10px rgba(0,0,0,0.15)}
+        .btn-submit:hover{opacity:0.9;transform:translateY(-2px)}
+        .success-msg{display:none;background:#27ae60;color:#fff;padding:14px;border-radius:8px;font-weight:bold;text-align:center;margin-top:15px;font-family:var(--header-font)}
+        .info-box{background:var(--bg);border-left:5px solid var(--accent);padding:16px 20px;border-radius:0 8px 8px 0;margin-bottom:24px;font-size:0.95rem}
+        .info-box strong{color:var(--accent)}
+        .site-footer{text-align:center;font-family:var(--body-font);font-size:0.9rem;color:var(--subtitle);margin-top:10px;margin-bottom:20px}
+        .site-footer .heart{color:#e74c3c}
+        @media(max-width:600px){.container{padding:20px}h1{font-size:2rem}}
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="/" class="btn-back">⬅ Back to Simulator</a>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">☀️ Light Mode</button>
+    </div>
+
+    <h1>Contact Us</h1>
+    <p class="subtitle">Questions, bug reports, or feature requests — we would love to hear from you.</p>
+
+    <nav class="nav-links">
+        <a href="/">Simulator</a>
+        <a href="/learn">Learn Guide</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+    </nav>
+
+    <div class="container">
+        <div class="info-box">
+            <strong>Response time:</strong> We typically respond within 1–3 business days. For bug reports, please include your browser name and version if possible.
+        </div>
+
+        <h2>Send a Message</h2>
+
+        <div class="field">
+            <label for="cf-name">Your Name</label>
+            <input type="text" id="cf-name" placeholder="e.g. Samuel Morse" maxlength="100">
+        </div>
+        <div class="field">
+            <label for="cf-email">Email Address</label>
+            <input type="email" id="cf-email" placeholder="you@example.com" maxlength="200">
+        </div>
+        <div class="field">
+            <label for="cf-subject">Subject</label>
+            <select id="cf-subject">
+                <option value="">— Select a topic —</option>
+                <option value="bug">Bug Report</option>
+                <option value="feature">Feature Request</option>
+                <option value="question">General Question</option>
+                <option value="feedback">Feedback / Compliment</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" placeholder="Describe your question or issue in detail..."></textarea>
+        </div>
+
+        <button class="btn-submit" onclick="submitForm()">Send Message ✉</button>
+        <div class="success-msg" id="successMsg">✅ Message received! We will get back to you shortly.</div>
+
+        <h2>Other Ways to Reach Us</h2>
+        <p>You can also open an issue or pull request on the project's <a href="https://github.com/life-web-arch/Morse-Code-Telegraph" style="color:var(--accent)" target="_blank" rel="noopener">GitHub repository</a>. Community contributions and suggestions are always welcome.</p>
+    </div>
+
+    <div class="site-footer">Made with <span class="heart">❤</span> by BM</div>
+
+<script>
+    let isDarkMode = true;
+    const savedTheme = localStorage.getItem('morseTheme');
+    if (savedTheme === 'light') { isDarkMode=false; document.documentElement.setAttribute('data-theme','light'); document.getElementById('themeBtn').innerText='🌙 Dark Mode'; }
+    function toggleTheme() { isDarkMode=!isDarkMode; document.documentElement.setAttribute('data-theme',isDarkMode?'dark':'light'); document.getElementById('themeBtn').innerText=isDarkMode?'☀️ Light Mode':'🌙 Dark Mode'; localStorage.setItem('morseTheme',isDarkMode?'dark':'light'); }
+
+    function submitForm() {
+        const name = document.getElementById('cf-name').value.trim();
+        const email = document.getElementById('cf-email').value.trim();
+        const subject = document.getElementById('cf-subject').value;
+        const message = document.getElementById('cf-message').value.trim();
+        if (!name || !email || !subject || !message) { alert('Please fill in all fields.'); return; }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
+        // Mailto fallback — works without a backend
+        const body = encodeURIComponent('Name: ' + name + '\nSubject: ' + subject + '\n\n' + message);
+        window.location.href = 'mailto:contact@morse-code-telegraph.vercel.app?subject=' + encodeURIComponent('[Morse Tool] ' + subject) + '&body=' + body;
+        document.getElementById('successMsg').style.display = 'block';
+    }
+</script>
+</body>
+</html>

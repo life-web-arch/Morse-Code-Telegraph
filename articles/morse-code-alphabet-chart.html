@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morse Code Alphabet Chart — All Letters, Numbers & Symbols</title>
+    <meta name="description" content="Complete Morse code alphabet chart for all 26 letters, digits 0–9, and punctuation. Printable reference table with dot-dash notation.">
+    <link rel="canonical" href="https://morse-code-telegraph.vercel.app/articles/morse-code-alphabet-chart">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#f3ebdb;--container-bg:#faf6f0;--text:#3c2a21;--subtitle:#6d594b;--border:#d4c5b0;--primary:#8b5a2b;--accent:#b54924;--header-font:'Playfair Display',serif;--body-font:'Courier Prime',Courier,monospace}
+        [data-theme="dark"]{--bg:#1a1816;--container-bg:#282522;--text:#e0d4c3;--subtitle:#a39b8e;--border:#443e38;--primary:#cda434;--accent:#d86438}
+        *{box-sizing:border-box;transition:background-color 0.3s,color 0.3s,border-color 0.3s;-webkit-tap-highlight-color:transparent}
+        body{background-color:var(--bg);color:var(--text);margin:0;padding:20px;display:flex;flex-direction:column;align-items:center;font-family:var(--body-font);line-height:1.8}
+        h1,h2,h3{font-family:var(--header-font);color:var(--primary);margin:0}
+        h1{font-size:2.4rem;margin-bottom:6px;text-align:center;line-height:1.2}
+        h2{font-size:1.6rem;margin-top:30px;margin-bottom:12px;border-bottom:2px solid var(--border);padding-bottom:8px}
+        h3{font-size:1.2rem;margin-top:20px;margin-bottom:8px;color:var(--accent)}
+        p.subtitle{text-align:center;color:var(--subtitle);max-width:700px;margin-bottom:25px;font-size:1.05rem}
+        .top-bar{width:100%;max-width:960px;display:flex;justify-content:space-between;margin-bottom:20px;align-items:center}
+        .theme-toggle,.btn-back{background:var(--container-bg);border:2px solid var(--border);border-radius:50px;cursor:pointer;color:var(--primary);font-family:var(--header-font);font-weight:bold;text-decoration:none;display:inline-block;box-shadow:0 2px 5px rgba(0,0,0,0.1);transition:transform 0.1s}
+        .theme-toggle{padding:5px 15px;font-size:1rem}
+        .btn-back{padding:5px 12px;font-size:0.9rem}
+        .theme-toggle:hover,.btn-back:hover{border-color:var(--primary);transform:translateY(-2px)}
+        article{width:100%;max-width:960px;background:var(--container-bg);padding:40px;border-radius:12px;box-shadow:0 12px 25px rgba(0,0,0,0.15);border:1px solid var(--border);margin-bottom:30px;font-size:1.05rem}
+        .nav-links{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:20px}
+        .nav-links a{background:var(--container-bg);border:1px solid var(--border);border-radius:6px;padding:5px 12px;color:var(--primary);text-decoration:none;font-size:0.85rem;transition:all 0.2s}
+        .nav-links a:hover{border-color:var(--primary);background:var(--primary);color:#fff}
+        .highlight-box{background:var(--bg);border-left:5px solid var(--accent);padding:18px 20px;margin:20px 0;border-radius:0 8px 8px 0}
+        .highlight-box strong{color:var(--primary)}
+        .morse-display{font-size:1.8rem;font-weight:bold;letter-spacing:5px;color:var(--accent);text-align:center;margin:12px 0;font-family:var(--body-font)}
+        table{width:100%;border-collapse:collapse;margin:15px 0}
+        th,td{padding:10px 12px;border:1px solid var(--border);text-align:left}
+        th{background:var(--bg);color:var(--primary);font-family:var(--header-font)}
+        .cta-box{background:linear-gradient(135deg,rgba(139,90,43,0.1),rgba(181,73,36,0.07));border:1px solid var(--primary);border-radius:10px;padding:22px;text-align:center;margin-top:30px}
+        [data-theme="dark"] .cta-box{background:linear-gradient(135deg,rgba(205,164,52,0.08),rgba(216,100,56,0.1))}
+        .cta-box h3{color:var(--accent);margin-bottom:10px}
+        .cta-btn{display:inline-block;background:var(--primary);color:#fff;padding:10px 22px;border-radius:8px;text-decoration:none;font-family:var(--header-font);font-weight:bold;transition:opacity 0.2s}
+        .cta-btn:hover{opacity:0.85}
+        ul,ol{padding-left:22px}
+        li{margin-bottom:9px}
+        a{color:var(--accent)}
+        .site-footer{text-align:center;font-family:var(--body-font);font-size:0.9rem;color:var(--subtitle);margin-top:10px;margin-bottom:20px}
+        .site-footer .heart{color:#e74c3c}
+        @media(max-width:600px){article{padding:20px}h1{font-size:1.9rem}}
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="/" class="btn-back">&#8592; Back to Simulator</a>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">&#9728;&#65039; Light Mode</button>
+    </div>
+    <h1>Morse Code Alphabet Chart</h1>
+    <p class="subtitle">The complete ITU reference table — every letter, number, and common punctuation mark.</p>
+    <nav class="nav-links">
+        <a href="/">Simulator</a>
+        <a href="/learn">Learn Guide</a>
+        <a href="/about">About</a>
+        <a href="/articles/what-is-morse-code">What is Morse Code?</a>
+        <a href="/articles/morse-code-alphabet-chart">Alphabet Chart</a>
+        <a href="/articles/how-to-learn-morse-code-fast">How to Learn Fast</a>
+        <a href="/articles/morse-code-translator-guide">Translator Guide</a>
+        <a href="/articles/history-of-telegraph-communication">Telegraph History</a>
+        <a href="/articles/sos-morse-code">SOS Guide</a>
+    </nav>
+    <article>
+        <h2>The International Standard</h2>
+        <p>The Morse code alphabet used worldwide today is the <strong>International Morse Code</strong> defined by the International Telecommunication Union (ITU). It superseded the original "American" Morse code in the early 20th century and is used in all modern contexts including aviation, amateur radio, and emergency signalling.</p>
+
+        <h2>Letters (A–Z)</h2>
+        <table>
+            <tr><th>Letter</th><th>Morse</th><th>Letter</th><th>Morse</th><th>Letter</th><th>Morse</th></tr>
+            <tr><td>A</td><td>.-</td><td>J</td><td>.---</td><td>S</td><td>...</td></tr>
+            <tr><td>B</td><td>-...</td><td>K</td><td>-.-</td><td>T</td><td>-</td></tr>
+            <tr><td>C</td><td>-.-.</td><td>L</td><td>.-..</td><td>U</td><td>..-</td></tr>
+            <tr><td>D</td><td>-..</td><td>M</td><td>--</td><td>V</td><td>...-</td></tr>
+            <tr><td>E</td><td>.</td><td>N</td><td>-.</td><td>W</td><td>.--</td></tr>
+            <tr><td>F</td><td>..-.</td><td>O</td><td>---</td><td>X</td><td>-..-</td></tr>
+            <tr><td>G</td><td>--.</td><td>P</td><td>.--.</td><td>Y</td><td>-.--</td></tr>
+            <tr><td>H</td><td>....</td><td>Q</td><td>--.-</td><td>Z</td><td>--..</td></tr>
+            <tr><td>I</td><td>..</td><td>R</td><td>.-.</td><td></td><td></td></tr>
+        </table>
+
+        <h2>Numbers (0–9)</h2>
+        <table>
+            <tr><th>Digit</th><th>Morse</th><th>Digit</th><th>Morse</th></tr>
+            <tr><td>0</td><td>-----</td><td>5</td><td>.....</td></tr>
+            <tr><td>1</td><td>.----</td><td>6</td><td>-....</td></tr>
+            <tr><td>2</td><td>..---</td><td>7</td><td>--...</td></tr>
+            <tr><td>3</td><td>...--</td><td>8</td><td>---..</td></tr>
+            <tr><td>4</td><td>....-</td><td>9</td><td>----.</td></tr>
+        </table>
+
+        <h2>Common Punctuation</h2>
+        <table>
+            <tr><th>Symbol</th><th>Name</th><th>Morse</th></tr>
+            <tr><td>.</td><td>Full stop</td><td>.-.-.-</td></tr>
+            <tr><td>,</td><td>Comma</td><td>--..--</td></tr>
+            <tr><td>?</td><td>Question mark</td><td>..--..</td></tr>
+            <tr><td>!</td><td>Exclamation</td><td>-.-.--</td></tr>
+            <tr><td>/</td><td>Slash</td><td>-..-.</td></tr>
+            <tr><td>@</td><td>At sign</td><td>.--.-.</td></tr>
+            <tr><td>-</td><td>Hyphen</td><td>-....-</td></tr>
+            <tr><td>+</td><td>Plus</td><td>.-.-.</td></tr>
+            <tr><td>=</td><td>Equals</td><td>-...-</td></tr>
+        </table>
+
+        <h2>Memory Tips</h2>
+        <div class="highlight-box">
+            <ul>
+                <li><strong>E</strong> (.) and <strong>T</strong> (-) are the simplest — one signal each. Learn these first.</li>
+                <li><strong>S</strong> (...) and <strong>O</strong> (---) together spell SOS — the most important sequence to know.</li>
+                <li>Numbers always have exactly 5 signals. Numbers starting with dots (1–4) begin with that many dots, then fill with dashes.</li>
+                <li>The pattern for letters tends to mirror their frequency: common letters like E, T, A, N are shorter; rare letters like Q, X, Z are longer.</li>
+            </ul>
+        </div>
+        <div class="cta-box">
+            <h3>Try It Now</h3>
+            <p>Practice everything you just learned with our free interactive telegraph simulator.</p>
+            <a href="/" class="cta-btn">&#9654; Open the Simulator</a>
+        </div>
+    </article>
+    <div class="site-footer">Made with <span class="heart">&#10084;</span> by BM</div>
+<script>
+    let isDarkMode = true;
+    const savedTheme = localStorage.getItem('morseTheme');
+    if (savedTheme === 'light') { isDarkMode=false; document.documentElement.setAttribute('data-theme','light'); document.getElementById('themeBtn').innerText='🌙 Dark Mode'; }
+    function toggleTheme() { isDarkMode=!isDarkMode; document.documentElement.setAttribute('data-theme',isDarkMode?'dark':'light'); document.getElementById('themeBtn').innerText=isDarkMode?'☀️ Light Mode':'🌙 Dark Mode'; localStorage.setItem('morseTheme',isDarkMode?'dark':'light'); }
+</script>
+</body>
+</html>

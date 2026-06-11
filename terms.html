@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Morse Code Telegraph Simulator</title>
+    <meta name="description" content="Terms of Service for Morse Code Telegraph Simulator. Free to use for personal and educational purposes.">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#f3ebdb;--container-bg:#faf6f0;--text:#3c2a21;--subtitle:#6d594b;--border:#d4c5b0;--primary:#8b5a2b;--accent:#b54924;--header-font:'Playfair Display',serif;--body-font:'Courier Prime',Courier,monospace}
+        [data-theme="dark"]{--bg:#1a1816;--container-bg:#282522;--text:#e0d4c3;--subtitle:#a39b8e;--border:#443e38;--primary:#cda434;--accent:#d86438}
+        *{box-sizing:border-box;transition:background-color 0.3s,color 0.3s,border-color 0.3s;-webkit-tap-highlight-color:transparent}
+        body{background-color:var(--bg);color:var(--text);margin:0;padding:20px;display:flex;flex-direction:column;align-items:center;font-family:var(--body-font);line-height:1.8}
+        h1,h2{font-family:var(--header-font);color:var(--primary);margin:0}
+        h1{font-size:2.5rem;margin-bottom:5px;text-align:center}
+        h2{font-size:1.6rem;margin-top:30px;margin-bottom:12px;border-bottom:2px solid var(--border);padding-bottom:8px}
+        p.subtitle{text-align:center;color:var(--subtitle);max-width:650px;margin-bottom:25px;font-size:1.1rem}
+        .top-bar{width:100%;max-width:900px;display:flex;justify-content:space-between;margin-bottom:20px;align-items:center}
+        .theme-toggle,.btn-back{background:var(--container-bg);border:2px solid var(--border);border-radius:50px;cursor:pointer;color:var(--primary);font-family:var(--header-font);font-weight:bold;text-decoration:none;display:inline-block;box-shadow:0 2px 5px rgba(0,0,0,0.1);transition:transform 0.1s}
+        .theme-toggle{padding:5px 15px;font-size:1rem}
+        .btn-back{padding:5px 12px;font-size:0.9rem}
+        .theme-toggle:hover,.btn-back:hover{border-color:var(--primary);transform:translateY(-2px)}
+        .container{width:100%;max-width:900px;background:var(--container-bg);padding:40px;border-radius:12px;box-shadow:0 12px 25px rgba(0,0,0,0.15);border:1px solid var(--border);margin-bottom:30px;font-size:1.05rem}
+        .nav-links{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:20px}
+        .nav-links a{background:var(--container-bg);border:1px solid var(--border);border-radius:6px;padding:6px 14px;color:var(--primary);text-decoration:none;font-size:0.9rem;transition:all 0.2s}
+        .nav-links a:hover{border-color:var(--primary);background:var(--primary);color:#fff}
+        .effective-date{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 18px;display:inline-block;font-size:0.9rem;color:var(--subtitle);margin-bottom:20px}
+        ul{padding-left:22px}
+        li{margin-bottom:10px}
+        a{color:var(--accent)}
+        .site-footer{text-align:center;font-family:var(--body-font);font-size:0.9rem;color:var(--subtitle);margin-top:10px;margin-bottom:20px}
+        .site-footer .heart{color:#e74c3c}
+        @media(max-width:600px){.container{padding:20px}h1{font-size:2rem}}
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="/" class="btn-back">&#8592; Back to Simulator</a>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">&#9728;&#65039; Light Mode</button>
+    </div>
+
+    <h1>Terms of Service</h1>
+    <p class="subtitle">By using this site you agree to the following terms. Please read them carefully.</p>
+
+    <nav class="nav-links">
+        <a href="/">Simulator</a>
+        <a href="/learn">Learn Guide</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+    </nav>
+
+    <div class="container">
+        <div class="effective-date">&#128197; Effective Date: June 1, 2026</div>
+
+        <h2>1. Acceptance of Terms</h2>
+        <p>By accessing or using Morse Code Telegraph ("the site") at <strong>morse-code-telegraph.vercel.app</strong>, you agree to be bound by these Terms of Service. If you do not agree, please discontinue use of the site.</p>
+
+        <h2>2. Description of Service</h2>
+        <p>Morse Code Telegraph is a free, browser-based educational tool that provides Morse code translation, audio playback, audio file decoding, and a reference chart. The service is provided as-is, at no charge, for personal and educational use.</p>
+
+        <h2>3. Permitted Use</h2>
+        <ul>
+            <li>You may use this site for personal, educational, research, or non-commercial purposes.</li>
+            <li>You may share links to this site freely.</li>
+            <li>You may download audio files generated by the tool for personal, non-commercial use.</li>
+        </ul>
+
+        <h2>4. Prohibited Use</h2>
+        <ul>
+            <li>You may not use automated bots, scrapers, or crawlers to access the site in a way that places excessive load on our servers.</li>
+            <li>You may not attempt to reverse-engineer, decompile, or use the site in a manner that violates applicable laws.</li>
+            <li>You may not use the site to transmit illegal, harmful, or fraudulent content.</li>
+        </ul>
+
+        <h2>5. Intellectual Property</h2>
+        <p>The Morse code standard itself is in the public domain. The specific implementation of this tool — its code, design, and written content — is owned by the site's creator. You may not reproduce or redistribute the source code or design without written permission.</p>
+
+        <h2>6. Third-Party Advertising</h2>
+        <p>This site displays third-party advertisements. We are not responsible for the content, accuracy, or privacy practices of advertisers. Clicking on advertisements is at your own risk.</p>
+
+        <h2>7. Disclaimer of Warranties</h2>
+        <p>The site is provided "as is" without warranties of any kind, express or implied. We do not guarantee that the site will be uninterrupted, error-free, or that audio decoding results will be 100% accurate.</p>
+
+        <h2>8. Limitation of Liability</h2>
+        <p>To the fullest extent permitted by law, the site creator shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of, or inability to use, this site.</p>
+
+        <h2>9. Changes to Terms</h2>
+        <p>We reserve the right to modify these Terms at any time. Continued use of the site after changes are posted constitutes acceptance of the revised terms.</p>
+
+        <h2>10. Governing Law</h2>
+        <p>These Terms are governed by applicable law. Any disputes will be resolved through good-faith negotiation where possible.</p>
+
+        <h2>11. Contact</h2>
+        <p>For questions about these Terms, please use the <a href="/contact">Contact page</a>.</p>
+    </div>
+
+    <div class="site-footer">Made with <span class="heart">&#10084;</span> by BM</div>
+
+<script>
+    let isDarkMode = true;
+    const savedTheme = localStorage.getItem('morseTheme');
+    if (savedTheme === 'light') { isDarkMode=false; document.documentElement.setAttribute('data-theme','light'); document.getElementById('themeBtn').innerText='🌙 Dark Mode'; }
+    function toggleTheme() { isDarkMode=!isDarkMode; document.documentElement.setAttribute('data-theme',isDarkMode?'dark':'light'); document.getElementById('themeBtn').innerText=isDarkMode?'☀️ Light Mode':'🌙 Dark Mode'; localStorage.setItem('morseTheme',isDarkMode?'dark':'light'); }
+</script>
+</body>
+</html>
