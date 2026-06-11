@@ -6,9 +6,9 @@
     <title>Morse Code Alphabet Chart — All Letters, Numbers & Symbols</title>
     <meta name="description" content="Complete Morse code alphabet chart for all 26 letters, digits 0–9, and punctuation. Printable reference table with dot-dash notation.">
     <link rel="canonical" href="https://morse-code-telegraph.vercel.app/articles/morse-code-alphabet-chart">
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,400;0,700;1,400;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
     <style>
-        :root{--bg:#f3ebdb;--container-bg:#faf6f0;--text:#3c2a21;--subtitle:#6d594b;--border:#d4c5b0;--primary:#8b5a2b;--accent:#b54924;--header-font:'Playfair Display',serif;--body-font:'Courier Prime',Courier,monospace}
+        :root{--bg:#f3ebdb;--container-bg:#faf6f0;--text:#3c2a21;--subtitle:#6d594b;--border:#d4c5b0;--primary:#8b5a2b;--accent:#b54924;--header-font:'Playfair Display',serif;--body-font:'Comic Neue',sans-serif}
         [data-theme="dark"]{--bg:#1a1816;--container-bg:#282522;--text:#e0d4c3;--subtitle:#a39b8e;--border:#443e38;--primary:#cda434;--accent:#d86438}
         *{box-sizing:border-box;transition:background-color 0.3s,color 0.3s,border-color 0.3s;-webkit-tap-highlight-color:transparent}
         body{background-color:var(--bg);color:var(--text);margin:0;padding:20px;display:flex;flex-direction:column;align-items:center;font-family:var(--body-font);line-height:1.8}
@@ -52,17 +52,6 @@
     </div>
     <h1>Morse Code Alphabet Chart</h1>
     <p class="subtitle">The complete ITU reference table — every letter, number, and common punctuation mark.</p>
-    <nav class="nav-links">
-        <a href="/">Simulator</a>
-        <a href="/learn">Learn Guide</a>
-        <a href="/about">About</a>
-        <a href="/articles/what-is-morse-code">What is Morse Code?</a>
-        <a href="/articles/morse-code-alphabet-chart">Alphabet Chart</a>
-        <a href="/articles/how-to-learn-morse-code-fast">How to Learn Fast</a>
-        <a href="/articles/morse-code-translator-guide">Translator Guide</a>
-        <a href="/articles/history-of-telegraph-communication">Telegraph History</a>
-        <a href="/articles/sos-morse-code">SOS Guide</a>
-    </nav>
     <article>
         <h2>The International Standard</h2>
         <p>The Morse code alphabet used worldwide today is the <strong>International Morse Code</strong> defined by the International Telecommunication Union (ITU). It superseded the original "American" Morse code in the early 20th century and is used in all modern contexts including aviation, amateur radio, and emergency signalling.</p>
@@ -127,5 +116,69 @@
     if (savedTheme === 'light') { isDarkMode=false; document.documentElement.setAttribute('data-theme','light'); document.getElementById('themeBtn').innerText='🌙 Dark Mode'; }
     function toggleTheme() { isDarkMode=!isDarkMode; document.documentElement.setAttribute('data-theme',isDarkMode?'dark':'light'); document.getElementById('themeBtn').innerText=isDarkMode?'☀️ Light Mode':'🌙 Dark Mode'; localStorage.setItem('morseTheme',isDarkMode?'dark':'light'); }
 </script>
+
+<!-- ═══ SIDE DRAWER NAV (shared across all pages) ═══ -->
+<style>
+  .sd-hamburger{position:fixed;top:14px;left:14px;z-index:2000;background:var(--container-bg);border:2px solid var(--border);border-radius:8px;width:42px;height:42px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,0.2);transition:border-color 0.2s}
+  .sd-hamburger:hover{border-color:var(--primary)}
+  .sd-hamburger span{display:block;width:20px;height:2px;background:var(--primary);border-radius:2px;transition:all 0.3s}
+  .sd-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .sd-hamburger.open span:nth-child(2){opacity:0}
+  .sd-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .sd-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:1500;backdrop-filter:blur(2px)}
+  .sd-overlay.open{display:block}
+  .sd-drawer{position:fixed;top:0;left:-280px;width:260px;height:100%;background:var(--container-bg);border-right:2px solid var(--border);z-index:1600;display:flex;flex-direction:column;padding:0;box-shadow:4px 0 20px rgba(0,0,0,0.3);transition:left 0.28s cubic-bezier(0.4,0,0.2,1);overflow-y:auto}
+  .sd-drawer.open{left:0}
+  .sd-drawer-header{padding:22px 20px 16px 20px;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:4px}
+  .sd-drawer-header strong{font-family:'Playfair Display',serif;color:var(--primary);font-size:1.15rem;letter-spacing:0.5px}
+  .sd-drawer-header span{font-family:'Comic Neue',sans-serif;font-size:0.8rem;color:var(--subtitle)}
+  .sd-nav-section{padding:10px 0;border-bottom:1px solid var(--border)}
+  .sd-nav-section:last-child{border-bottom:none}
+  .sd-nav-label{font-family:'Comic Neue',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--subtitle);padding:6px 20px 4px 20px}
+  .sd-nav-link{display:flex;align-items:center;gap:12px;padding:11px 20px;color:var(--text);text-decoration:none;font-family:'Comic Neue',sans-serif;font-size:0.95rem;font-weight:700;transition:all 0.15s;border-left:3px solid transparent}
+  .sd-nav-link:hover,.sd-nav-link.active{background:var(--bg);color:var(--primary);border-left-color:var(--primary)}
+  .sd-nav-link .sd-icon{font-size:1.1rem;width:20px;text-align:center;flex-shrink:0}
+</style>
+
+<button class="sd-hamburger" id="sdHamburger" onclick="sdToggle()" aria-label="Open navigation menu">
+  <span></span><span></span><span></span>
+</button>
+<div class="sd-overlay" id="sdOverlay" onclick="sdClose()"></div>
+<nav class="sd-drawer" id="sdDrawer">
+  <div class="sd-drawer-header">
+    <strong>&#x26A1; Morse Telegraph</strong>
+    <span>Navigation</span>
+  </div>
+  <div class="sd-nav-section">
+    <div class="sd-nav-label">Tool</div>
+    <a href="/" class="sd-nav-link" data-path="/"><span class="sd-icon">&#x1F4F9;</span>Simulator</a>
+    <a href="/learn" class="sd-nav-link" data-path="/learn"><span class="sd-icon">&#x1F4D6;</span>Learn Guide</a>
+  </div>
+  <div class="sd-nav-section">
+    <div class="sd-nav-label">Articles</div>
+    <a href="/articles/what-is-morse-code" class="sd-nav-link" data-path="/articles/what-is-morse-code"><span class="sd-icon">&#x2753;</span>What is Morse Code?</a>
+    <a href="/articles/morse-code-alphabet-chart" class="sd-nav-link" data-path="/articles/morse-code-alphabet-chart"><span class="sd-icon">&#x1F524;</span>Alphabet Chart</a>
+    <a href="/articles/how-to-learn-morse-code-fast" class="sd-nav-link" data-path="/articles/how-to-learn-morse-code-fast"><span class="sd-icon">&#x26A1;</span>Learn Fast</a>
+    <a href="/articles/morse-code-translator-guide" class="sd-nav-link" data-path="/articles/morse-code-translator-guide"><span class="sd-icon">&#x1F504;</span>Translator Guide</a>
+    <a href="/articles/history-of-telegraph-communication" class="sd-nav-link" data-path="/articles/history-of-telegraph-communication"><span class="sd-icon">&#x1F4DC;</span>Telegraph History</a>
+    <a href="/articles/sos-morse-code" class="sd-nav-link" data-path="/articles/sos-morse-code"><span class="sd-icon">&#x1F198;</span>SOS Guide</a>
+  </div>
+  <div class="sd-nav-section">
+    <div class="sd-nav-label">Site</div>
+    <a href="/about" class="sd-nav-link" data-path="/about"><span class="sd-icon">&#x2139;&#xFE0F;</span>About</a>
+    <a href="/contact" class="sd-nav-link" data-path="/contact"><span class="sd-icon">&#x2709;&#xFE0F;</span>Contact</a>
+    <a href="/privacy" class="sd-nav-link" data-path="/privacy"><span class="sd-icon">&#x1F512;</span>Privacy Policy</a>
+    <a href="/terms" class="sd-nav-link" data-path="/terms"><span class="sd-icon">&#x1F4CB;</span>Terms of Service</a>
+  </div>
+</nav>
+<script>
+  function sdToggle(){var h=document.getElementById('sdHamburger'),d=document.getElementById('sdDrawer'),o=document.getElementById('sdOverlay');h.classList.toggle('open');d.classList.toggle('open');o.classList.toggle('open');document.body.style.overflow=d.classList.contains('open')?'hidden':'';}
+  function sdClose(){var h=document.getElementById('sdHamburger'),d=document.getElementById('sdDrawer'),o=document.getElementById('sdOverlay');h.classList.remove('open');d.classList.remove('open');o.classList.remove('open');document.body.style.overflow='';}
+  // Mark the active link
+  (function(){var path=window.location.pathname.replace(/\/$/,'');document.querySelectorAll('.sd-nav-link').forEach(function(a){if(a.getAttribute('data-path')===path||(path===''&&a.getAttribute('data-path')==='/')){a.classList.add('active');}});})();
+  // Close on Escape
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')sdClose();});
+</script>
+<!-- ═══ END SIDE DRAWER ═══ -->
 </body>
 </html>
