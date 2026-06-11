@@ -88,6 +88,13 @@
         .site-footer{text-align:center;font-size:0.9rem;color:var(--subtitle);margin-top:10px;margin-bottom:20px}
         .site-footer .heart{color:#e74c3c}
         @media(max-width:600px){article{padding:22px}h1{font-size:1.85rem}}
+    
+        /* Mobile table: shrink font+padding, headers no-wrap */
+        th{white-space:nowrap}
+        @media(max-width:600px){
+          table{font-size:0.78rem}
+          th,td{padding:6px 7px}
+        }
     </style>
 </head>
 <body>

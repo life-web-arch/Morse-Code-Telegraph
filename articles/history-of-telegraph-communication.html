@@ -102,6 +102,13 @@
         /* Table striping */
         tr:nth-child(even) td{background:rgba(0,0,0,0.02)}
         [data-theme="dark"] tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
+    
+        /* Mobile table: shrink font+padding, headers no-wrap */
+        th{white-space:nowrap}
+        @media(max-width:600px){
+          table{font-size:0.78rem}
+          th,td{padding:6px 7px}
+        }
     </style>
 </head>
 <body>
